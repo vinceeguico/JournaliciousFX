@@ -10,9 +10,26 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class SceneController {
+	
+	protected enum View {
+		LOGIN("/application/login/Login.fxml"),
+		HOME("/application/home/Home.fxml"),
+		CHANGE_PASSWORD("/application/changePassword/ChangePassword.fxml");
+		
+		private final String view;
+		
+		private View(String view) {
+			this.view = view;
+		}
+		
+		public String getValue() {
+			return this.view;
+		}
+	}
+	
 
-	public void switchToHome(ActionEvent e) throws IOException {
-		BorderPane root = FXMLLoader.load(getClass().getResource("/application/home/Home.fxml"));
+	protected void switchToView(ActionEvent e, View view) throws IOException {
+		BorderPane root = FXMLLoader.load(getClass().getResource(view.getValue()));
 		Scene scene = new Scene(root);
 		
 		Node source = (Node) e.getSource();
