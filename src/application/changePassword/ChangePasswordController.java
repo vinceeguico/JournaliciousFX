@@ -81,7 +81,7 @@ public class ChangePasswordController extends SceneController implements Initial
 			return;
 		}
 		
-		// check if confirm new password matches new password
+		// check if new password matches confirm new password
 		String newPassword = newPasswordField.getText();
 		String confirmPassword = confirmPasswordField.getText();
 		if (!newPassword.equals(confirmPassword)) {
@@ -90,7 +90,13 @@ public class ChangePasswordController extends SceneController implements Initial
 			return;
 		}
 		
-		// check for empty security question fields
+		// check if new password is valid
+		if (!passwordModel.isValidNewPassword(newPassword)) {
+			errorMsgLbl.setText("Error: Your new password is invalid! Please try something else.");
+			return;
+		}
+		
+		// check for empty security question field
 		if (!this.isSecurityQuestionSelected || this.securityQuestion == null || this.securityQuestion.equals("")) {
 			// display error message and break
 			errorMsgLbl.setText("Error: You must select a security question!");
