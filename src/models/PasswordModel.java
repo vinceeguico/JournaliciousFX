@@ -32,6 +32,15 @@ public class PasswordModel {
 		return false;
 	}
 	
+	public boolean isValidNewPassword(String newPassword) {
+		
+		if (newPassword.equals(DEFAULT_PASSWORD)) {
+			return false;
+		}
+		
+		return true;
+	}
+	
 	public void setPassword(String password) {
 		this.password = password;
 	}
