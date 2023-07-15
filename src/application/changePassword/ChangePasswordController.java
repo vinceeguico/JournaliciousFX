@@ -18,9 +18,17 @@ import models.UserModel;
 /** 
  * Controller class for Change Password page
  * 
- * @author Daniel_Howard
+ * @author Daniel Howard
  **/
 public class ChangePasswordController extends SceneController implements Initializable {
+
+	private static final String[] SECURITY_QUESTIONS = {
+			"What was your first pet's name?",			
+			"What is your mother's maiden name?",
+			"What street did you grow up on?",
+			"What is your favorite programming language?",
+			"What is your favorite food?"
+		};
 	
 	@FXML private TextField prevPasswordField;
 	@FXML private TextField newPasswordField;
@@ -30,17 +38,9 @@ public class ChangePasswordController extends SceneController implements Initial
 	@FXML private Button submitBtn;
 	@FXML private Label errorMsgLbl;
 	
-	private static final String[] SECURITY_QUESTIONS = {
-		"What was your first pet's name?",			
-		"What is your mother's maiden name?",
-		"What street did you grow up on?",
-		"What is your favorite programming language?",
-		"What is your favorite food?"
-	};
-	
 	private boolean isSecurityQuestionSelected;
-	private String securityQuestion = null;
-	private String securityQuestionAnswer = null;
+	private String securityQuestion;
+	private String securityQuestionAnswer;
 	
 	
 	/**
@@ -49,13 +49,12 @@ public class ChangePasswordController extends SceneController implements Initial
 	public ChangePasswordController() {
 		this.isSecurityQuestionSelected = false;
 		this.securityQuestion = null;
-		this.securityQuestionAnswer = null;
 	}
 	
 	
 	/** 
-	 * Initializes the choice box with the provided security 
-	 * questions and sets it up for selection
+	 * Initializes the choice box with the provided security questions 
+	 * and connects it to a method for handling its logic
 	 * 
 	 * @param location the location of a file or directory
 	 * @param resources the resources required to locate the root element
@@ -66,6 +65,7 @@ public class ChangePasswordController extends SceneController implements Initial
 		securityQuestionChoiceBox.getItems().addAll(SECURITY_QUESTIONS);
 		securityQuestionChoiceBox.setOnAction(this::handleSecurityQuestionSelection);
 	}
+	
 	
 	/** 
 	 * Handles logic for the selection of a security question
@@ -87,49 +87,46 @@ public class ChangePasswordController extends SceneController implements Initial
 	
 	
 	/**
-	 * Handles logic for clicking the submit button
-	 * on the change password form
+	 * Handles logic for clicking the submit button on the change password form,
+	 * Displays error message and breaks if any fields are invalid
 	 * 
 	 *  @param e an event given by some user action on the application
 	 **/
 	public void handleSubmit(ActionEvent e) {
+		// get shared user and password models
 		UserModel user = super.getUserModel();
 		PasswordModel passwordModel = user.getPasswordModel();
 		
 		// check if previous password was incorrect
 		String prevPassword = prevPasswordField.getText();
 		if (!passwordModel.isCorrectPassword(prevPassword)) {
-			// display error message and break
 			errorMsgLbl.setText("Error: Previous password was incorrect! Please try again.");
 			return;
 		}
 		
-		// check if new password matches confirm new password
-		String newPassword = newPasswordField.getText();
-		String confirmPassword = confirmPasswordField.getText();
-		if (!newPassword.equals(confirmPassword)) {
-			// display error message and break
-			errorMsgLbl.setText("Error: New passwords did not match!");
-			return;
-		}
-		
 		// check if new password is valid
+		String newPassword = newPasswordField.getText();
 		if (!passwordModel.isValidNewPassword(newPassword)) {
 			errorMsgLbl.setText("Error: Your new password is invalid! Please try something else.");
 			return;
 		}
 		
+		// check if new password matches confirm new password field
+		String confirmPassword = confirmPasswordField.getText();
+		if (!newPassword.equals(confirmPassword)) {
+			errorMsgLbl.setText("Error: New passwords did not match!");
+			return;
+		}
+		
 		// check for empty security question field
 		if (!this.isSecurityQuestionSelected || this.securityQuestion == null || this.securityQuestion.equals("")) {
-			// display error message and break
 			errorMsgLbl.setText("Error: You must select a security question!");
 			return;
 		}
 		
 		// check if security question was answered
-		this.securityQuestionAnswer = securityQuestionAnswerField.getText();
-		if (this.securityQuestionAnswer == null || this.securityQuestionAnswer.equals("")) {
-			// display error message and break
+		String securityQuestionAnswer = securityQuestionAnswerField.getText();
+		if (securityQuestionAnswer == null || securityQuestionAnswer.equals("")) {
 			errorMsgLbl.setText("Error: You must answer your security question!");
 			return;
 		}
@@ -140,7 +137,7 @@ public class ChangePasswordController extends SceneController implements Initial
 		user.setSecurityQuestionAnswer(this.securityQuestionAnswer);
 		passwordModel.setPassword(newPassword);
 		
-		// display success message and redirect
+		// display success message (TODO!) and redirect to home page
 		super.switchToView(e, View.HOME);
 	}
 	

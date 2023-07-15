@@ -14,8 +14,7 @@ public class Main extends Application {
 	/**
 	 * Shows the user the login page upon application start
 	 * 
-	 * @param primaryStage the highest level container for the application
-	 * that hosts scenes 
+	 * @param primaryStage the highest level container for the application that hosts scenes 
 	 **/
 	@Override
 	public void start(Stage primaryStage) {

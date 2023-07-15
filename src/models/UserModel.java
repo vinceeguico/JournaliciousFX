@@ -1,11 +1,12 @@
 package models;
 
 /**
- * Models a user.
+ * A class that handles backend logic for user data.
  * 
  * @author Vince Eguico
  */
 public class UserModel {
+	
 	private PasswordModel passwordModel;
 	private String securityQuestion;
 	private String securityQuestionAnswer;
@@ -19,10 +20,10 @@ public class UserModel {
 		this.securityQuestionAnswer = null;
 	}
 	
-	/*
-	 *   Returns the password model.
-	 *   
-	 *   @return This password model.
+	/**
+	 * Returns the password model.
+	 * 
+	 * @return the user's password model
 	 */
 	public PasswordModel getPasswordModel() {
 		return this.passwordModel;
@@ -53,7 +54,6 @@ public class UserModel {
 	 * @return Returns true if the entered answer matches the answer to the security questions. Otherwise, returns false.
 	 */
 	public boolean isCorrectSecurityQuestionAnswer(String enteredAnswer) {
-		
 		if (enteredAnswer.equals(this.securityQuestionAnswer)) {
 			return true;
 		}

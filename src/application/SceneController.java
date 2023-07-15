@@ -12,7 +12,7 @@ import models.UserModel;
 
 /**
  * Parent class for all scene controllers
- * provides access to a user model that persists through applications lifetime
+ * provides access to a user model that persists through application's lifetime
  * 
  * @author Chase Barman
  */

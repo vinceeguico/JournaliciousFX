@@ -30,7 +30,8 @@ public class LoginController extends SceneController implements Initializable {
 	
 	
 	/**
-	 * Constructs a new LoginController and gains access to user and password models
+	 * Constructs a new LoginController, 
+	 * gains access to user and password models
 	 */
 	public LoginController() {
 		UserModel user = super.getUserModel();
@@ -45,10 +46,10 @@ public class LoginController extends SceneController implements Initializable {
 	 */
 	public void handleLoginAttempt(ActionEvent e) {		
 		
-		String enteredPassword = passwordField.getText();
 		// logs in user, redirecting them to the next page
+		String enteredPassword = passwordField.getText();
 		if (this.passwordModel.isCorrectPassword(enteredPassword)) {
-			// first time users must change password
+			// first time users must go to  change password
 			if (this.passwordModel.isFirstTimeUser()) {
 				super.switchToView(e, View.CHANGE_PASSWORD);
 			}

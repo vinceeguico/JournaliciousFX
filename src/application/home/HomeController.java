@@ -8,8 +8,8 @@ import javafx.event.ActionEvent;
  * 
  * @author Vince Eguico
  */
-
 public class HomeController extends SceneController {
+	
 	/**
 	 * Switches to "Login" screen.
 	 * 

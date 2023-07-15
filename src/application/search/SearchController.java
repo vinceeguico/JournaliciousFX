@@ -8,7 +8,6 @@ import javafx.event.ActionEvent;
  * 
  * @author Vince Eguico
  */
-
 public class SearchController extends SceneController {
 	
 	/**

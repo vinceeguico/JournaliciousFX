@@ -7,7 +7,7 @@ package models;
  * @author Chase Barman
  */
 public class PasswordModel {
-	// constants
+
 	private static final String DEFAULT_PASSWORD = "p";
 	
 	
@@ -15,7 +15,8 @@ public class PasswordModel {
 	
 	
 	/**
-	 * Constructs a PasswordModel object
+	 * Constructs a PasswordModel object,
+	 * initializing the password to default password
 	 */
 	public PasswordModel() {
 		this.password = DEFAULT_PASSWORD;
@@ -34,7 +35,7 @@ public class PasswordModel {
 	/**
 	 * Checks if the user is a first time user
 	 * 
-	 * @return a boolean indicating whether a user is a first time user
+	 * @return a boolean indicating whether user is a first time user
 	 */
 	public boolean isFirstTimeUser() {
 		
@@ -47,9 +48,9 @@ public class PasswordModel {
 	
 	
 	/**
-	 * Checks if a password matches the stored password
+	 * Checks if a given password matches the stored password
 	 * 
-	 * @param enteredPassword the password entered by a user
+	 * @param enteredPassword the password entered by the user
 	 * @return a boolean indicating if the user entered the correct password
 	 */
 	public boolean isCorrectPassword(String enteredPassword) {
@@ -63,7 +64,7 @@ public class PasswordModel {
 	
 	
 	/**
-	 * Checks if a String is a valid new password
+	 * Checks if a given String is a valid new password
 	 * 
 	 * @param newPassword the new password entered by the user
 	 * @return a boolean indicating whether the user's new password is valid
