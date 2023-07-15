@@ -6,8 +6,17 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.fxml.FXMLLoader;
 
-
+/**
+ * Starter class launched upon running application
+ **/
 public class Main extends Application {
+	
+	/**
+	 * Shows the user the login page upon application start
+	 * 
+	 * @param primaryStage the highest level container for the application
+	 * that hosts scenes 
+	 **/
 	@Override
 	public void start(Stage primaryStage) {
 		try {
