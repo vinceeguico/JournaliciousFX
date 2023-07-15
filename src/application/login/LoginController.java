@@ -16,30 +16,33 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 
-
+/**
+ * Controller for the login page, initialized on startup
+ * 
+ * @author Chase Barman
+ */
 public class LoginController extends SceneController implements Initializable {
-	// instance variables
 	private PasswordModel passwordModel;
 	
 	@FXML private TextField passwordField;
 	@FXML private Label errorMsgLbl;
 	@FXML private Button loginBtn;
 	
-	@Override
-	public void initialize(URL location, ResourceBundle resources) {
-		// if first time user, display message reminder about default password
-		if (this.passwordModel.isFirstTimeUser()) {
-			errorMsgLbl.setText("Reminder: On first time login, default password is \"p\"");
-		}
-	}
 	
-	// constructor
+	/**
+	 * Constructs a new LoginController and gains access to user and password models
+	 */
 	public LoginController() {
 		UserModel user = super.getUserModel();
 		this.passwordModel = user.getPasswordModel();
 	}
 	
 	
+	/**
+	 * Handles logic for clicking the login button
+	 * 
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleLoginAttempt(ActionEvent e) {		
 		
 		String enteredPassword = passwordField.getText();
@@ -68,16 +71,42 @@ public class LoginController extends SceneController implements Initializable {
 		}
 	}
 	
+	
+	/**
+	 * Handles logic for clicking the forgot password button
+	 * 
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleForgotPassword(ActionEvent e) {
 		super.switchToView(e, View.RESET_PASSWORD);
 	}
 	
 	
-	// event listener for when enter key is pressed inside text box
+	/**
+	 * Event listener on "Enter Password" field for when key is pressed,
+	 * submits form if the ENTER key is pressed
+	 * 
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleKeyPress(KeyEvent e) {
 		if (e.getCode() == KeyCode.ENTER) {
 			ActionEvent actionEvent = new ActionEvent(e.getSource(), e.getTarget());
 			handleLoginAttempt(actionEvent);
+		}
+	}
+	
+	
+	/**
+	 * Updates UI according to user status on page startup
+	 * 
+	 * @param location the location of a file or directory
+	 * @param resources the resources required to locate the root element
+	 */
+	@Override
+	public void initialize(URL location, ResourceBundle resources) {
+		// if first time user, display message reminder about default password
+		if (this.passwordModel.isFirstTimeUser()) {
+			errorMsgLbl.setText("Reminder: On first time login, default password is \"p\"");
 		}
 	}
 	

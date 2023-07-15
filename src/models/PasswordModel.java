@@ -1,18 +1,41 @@
 package models;
 
+/**
+ * A class representing a Password for the application,
+ * handles all logic related to storing and checking a password
+ * 
+ * @author Chase Barman
+ */
 public class PasswordModel {
 	// constants
 	private static final String DEFAULT_PASSWORD = "p";
 	
-	// instance variables
+	
 	private String password;
 	
 	
-	// constructor
+	/**
+	 * Constructs a PasswordModel object
+	 */
 	public PasswordModel() {
 		this.password = DEFAULT_PASSWORD;
 	}
 	
+	/**
+	 * Changes the password stored in the system
+	 * 
+	 * @param password the new password to change the current password to
+	 */
+	public void setPassword(String password) {
+		this.password = password;
+	}
+	
+	
+	/**
+	 * Checks if the user is a first time user
+	 * 
+	 * @return a boolean indicating whether a user is a first time user
+	 */
 	public boolean isFirstTimeUser() {
 		
 		if (this.password.equals(DEFAULT_PASSWORD)) {
@@ -23,6 +46,12 @@ public class PasswordModel {
 	}
 	
 	
+	/**
+	 * Checks if a password matches the stored password
+	 * 
+	 * @param enteredPassword the password entered by a user
+	 * @return a boolean indicating if the user entered the correct password
+	 */
 	public boolean isCorrectPassword(String enteredPassword) {
 		
 		if (enteredPassword.equals(this.password)) {
@@ -32,6 +61,13 @@ public class PasswordModel {
 		return false;
 	}
 	
+	
+	/**
+	 * Checks if a String is a valid new password
+	 * 
+	 * @param newPassword the new password entered by the user
+	 * @return a boolean indicating whether the user's new password is valid
+	 */
 	public boolean isValidNewPassword(String newPassword) {
 		
 		if (newPassword.equals(DEFAULT_PASSWORD)) {
@@ -39,10 +75,6 @@ public class PasswordModel {
 		}
 		
 		return true;
-	}
-	
-	public void setPassword(String password) {
-		this.password = password;
 	}
 	
 }

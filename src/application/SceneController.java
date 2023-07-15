@@ -8,21 +8,36 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import models.PasswordModel;
 import models.UserModel;
 
+/**
+ * Parent class for all scene controllers
+ * provides access to a user model that persists through applications lifetime
+ * 
+ * @author Chase Barman
+ */
 public class SceneController {
 	
-	// instance variables
+	// instance made static to avoid being reset upon re-instantiation
 	private static UserModel user = new UserModel();
 	
-
+	
+	/**
+	 * Gets the class's user model
+	 * 
+	 * @return a user model shared between all controllers
+	 */
 	protected UserModel getUserModel() {
 		return user;
 	}
 	
 
-	// Handle the switching between scenes given a view to switch to
+	/**
+	 * Handles the logic for switching from one view to another
+	 * 
+	 * @param e an event given by some user action on the application
+	 * @param view one of the scene views offered by the View enum
+	 */
 	protected void switchToView(ActionEvent e, View view) {
 		try {
 			// load the view from fxml file and create new scene
@@ -42,7 +57,10 @@ public class SceneController {
 		}
 	}
 	
-	// Enumerate all possible views the application can switch to
+	
+	/**
+	 * Enumerates all possible views the application can switch to
+	 */
 	protected enum View {
 		LOGIN("/application/login/Login.fxml"),
 		HOME("/application/home/Home.fxml"),
@@ -51,15 +69,22 @@ public class SceneController {
 		CREATE("/application/create/Create.fxml"),
 		SEARCH("/application/search/Search.fxml");
 		
-		// instance variable
 		private final String view;
 		
-		// constructor
+		/**
+		 * Constructs the view and associates it with a String value
+		 * 
+		 * @param view the next scene view to switch to
+		 */
 		private View(String view) {
 			this.view = view;
 		}
 		
-		// getValue() needed to retrieve value associated with enum
+		/**
+		 * Provides the value associated with a view
+		 * 
+		 * @return a String representing the path to a view's location in local files
+		 */
 		public String getValue() {
 			return this.view;
 		}
