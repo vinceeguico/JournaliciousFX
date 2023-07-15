@@ -15,7 +15,11 @@ import javafx.scene.control.TextField;
 import models.PasswordModel;
 import models.UserModel;
 
-
+/** 
+ * Controller class for Change Password page
+ * 
+ * @author Daniel_Howard
+ **/
 public class ChangePasswordController extends SceneController implements Initializable {
 	
 	@FXML private TextField prevPasswordField;
@@ -39,7 +43,9 @@ public class ChangePasswordController extends SceneController implements Initial
 	private String securityQuestionAnswer = null;
 	
 	
-	// constructor
+	/**
+	 * Constructs a new Change Password Controller
+	 **/
 	public ChangePasswordController() {
 		this.isSecurityQuestionSelected = false;
 		this.securityQuestion = null;
@@ -47,7 +53,13 @@ public class ChangePasswordController extends SceneController implements Initial
 	}
 	
 	
-	// initialization method to setup and support dropdown menu (choice box)
+	/** 
+	 * Initializes the choice box with the provided security 
+	 * questions and sets it up for selection
+	 * 
+	 * @param location the location of a file or directory
+	 * @param resources the resources required to locate the root element
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		
@@ -55,6 +67,12 @@ public class ChangePasswordController extends SceneController implements Initial
 		securityQuestionChoiceBox.setOnAction(this::handleSecurityQuestionSelection);
 	}
 	
+	/** 
+	 * Handles logic for the selection of a security question
+	 * from the choice box
+	 *
+	 * @param e an event given by some user action on the application 
+	 **/
 	public void handleSecurityQuestionSelection(ActionEvent e) {
 		
 		this.securityQuestion = securityQuestionChoiceBox.getValue();
@@ -68,7 +86,12 @@ public class ChangePasswordController extends SceneController implements Initial
 	}
 	
 	
-	// handle form submission
+	/**
+	 * Handles logic for clicking the submit button
+	 * on the change password form
+	 * 
+	 *  @param e an event given by some user action on the application
+	 **/
 	public void handleSubmit(ActionEvent e) {
 		UserModel user = super.getUserModel();
 		PasswordModel passwordModel = user.getPasswordModel();
