@@ -22,7 +22,7 @@
                   <Font size="48.0" />
                </font>
             </Label>
-            <TextField id="passwordField" fx:id="passwordField" onKeyPressed="#handleKeyPress" promptText="Enter Password">
+            <TextField fx:id="passwordField" focusTraversable="false" maxHeight="15.0" maxWidth="260.0" onKeyPressed="#handleKeyPress" promptText="Enter Password">
                <VBox.margin>
                   <Insets left="150.0" right="150.0" />
                </VBox.margin>
