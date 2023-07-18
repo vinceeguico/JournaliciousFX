@@ -6,7 +6,6 @@ package models;
  * @author Vince Eguico
  */
 public class UserModel {
-	
 	private PasswordModel passwordModel;
 	private String securityQuestion;
 	private String securityQuestionAnswer;
@@ -23,7 +22,7 @@ public class UserModel {
 	/**
 	 * Returns the password model.
 	 * 
-	 * @return the user's password model
+	 * @return the user's password model.
 	 */
 	public PasswordModel getPasswordModel() {
 		return this.passwordModel;
@@ -54,6 +53,7 @@ public class UserModel {
 	 * @return Returns true if the entered answer matches the answer to the security questions. Otherwise, returns false.
 	 */
 	public boolean isCorrectSecurityQuestionAnswer(String enteredAnswer) {
+		
 		if (enteredAnswer.equals(this.securityQuestionAnswer)) {
 			return true;
 		}
