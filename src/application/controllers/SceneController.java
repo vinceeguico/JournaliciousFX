@@ -54,6 +54,7 @@ public class SceneController {
 		} catch (IOException ex) {
 			System.out.println("Failed to switch scene");
 			System.out.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 	
