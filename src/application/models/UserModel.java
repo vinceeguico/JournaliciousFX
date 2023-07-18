@@ -6,17 +6,28 @@ package application.models;
  * @author Vince Eguico
  */
 public class UserModel {
-	private PasswordModel passwordModel;
-	private String securityQuestion;
-	private String securityQuestionAnswer;
+	
+	private static UserModel userModel = new UserModel();
+	private static PasswordModel passwordModel;
+	private static JournalModel journalModel;
+	
+	private static String securityQuestion;
+	private static String securityQuestionAnswer;
 	
 	/**
 	 * Constructs a user model.
 	 */
-	public UserModel() {
-		this.passwordModel = new PasswordModel();
-		this.securityQuestion = null;
-		this.securityQuestionAnswer = null;
+	private UserModel() {
+		passwordModel = new PasswordModel();
+		journalModel = new JournalModel();
+		
+		securityQuestion = null;
+		securityQuestionAnswer = null;
+	}
+	
+	
+	public static UserModel getUserModel() {
+		return userModel;
 	}
 	
 	/**
@@ -25,16 +36,22 @@ public class UserModel {
 	 * @return the user's password model.
 	 */
 	public PasswordModel getPasswordModel() {
-		return this.passwordModel;
+		return passwordModel;
 	}
+	
+	
+	public JournalModel getJournalModel() {
+		return journalModel;
+	}
+	
 	
 	/**
 	 * Sets the security question.
 	 * 
-	 * @param securityQuestion The chosen security question.
+	 * @param newSecurityQuestion The chosen security question.
 	 */
-	public void setSecurityQuestion(String securityQuestion) {
-		this.securityQuestion = securityQuestion;
+	public void setSecurityQuestion(String newSecurityQuestion) {
+		securityQuestion = newSecurityQuestion;
 	}
 	
 	/**
@@ -43,7 +60,7 @@ public class UserModel {
 	 * @param answer The answer to the selected security question.
 	 */
 	public void setSecurityQuestionAnswer(String answer) {
-		this.securityQuestionAnswer = answer;
+		securityQuestionAnswer = answer;
 	}
 	
 	/**
@@ -54,7 +71,7 @@ public class UserModel {
 	 */
 	public boolean isCorrectSecurityQuestionAnswer(String enteredAnswer) {
 		
-		if (enteredAnswer.equals(this.securityQuestionAnswer)) {
+		if (enteredAnswer.equals(securityQuestionAnswer)) {
 			return true;
 		}
 		

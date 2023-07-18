@@ -1,5 +1,6 @@
 package application;
 	
+import application.dal.DBConnection;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
@@ -25,6 +26,11 @@ public class Main extends Application {
 			
 			primaryStage.setScene(scene);
 			primaryStage.show();
+			
+			
+			DBConnection db = DBConnection.getDBConnection();
+			db.test();
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();

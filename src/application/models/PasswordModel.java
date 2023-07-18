@@ -10,7 +10,6 @@ public class PasswordModel {
 
 	private static final String DEFAULT_PASSWORD = "p";
 	
-	
 	private String password;
 	
 	
@@ -21,6 +20,7 @@ public class PasswordModel {
 	public PasswordModel() {
 		this.password = DEFAULT_PASSWORD;
 	}
+	
 	
 	/**
 	 * Changes the password stored in the system

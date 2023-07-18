@@ -19,18 +19,7 @@ import javafx.stage.Stage;
 class SceneController {
 	
 	// class variables made static to avoid being reset upon re-instantiation
-	private static UserModel user = new UserModel();
 	private static View prevView;
-	
-	
-	/**
-	 * Gets the class's user model
-	 * 
-	 * @return a user model shared between all controllers
-	 */
-	protected UserModel getUserModel() {
-		return user;
-	}
 	
 	
 	private static void setPrevView(View view) {

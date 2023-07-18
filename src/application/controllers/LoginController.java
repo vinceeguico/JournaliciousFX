@@ -32,7 +32,7 @@ public class LoginController extends SceneController implements Initializable {
 	 * gains access to user and password models
 	 */
 	public LoginController() {
-		UserModel user = super.getUserModel();
+		UserModel user = UserModel.getUserModel();
 		this.passwordModel = user.getPasswordModel();
 	}
 	

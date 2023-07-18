@@ -20,7 +20,6 @@ import javafx.scene.control.TextField;
  * @author Daniel Howard
  **/
 public class ChangePasswordController extends SceneController implements Initializable {
-
 	private static final String[] SECURITY_QUESTIONS = {
 			"What was your first pet's name?",			
 			"What is your mother's maiden name?",
@@ -93,7 +92,7 @@ public class ChangePasswordController extends SceneController implements Initial
 	 **/
 	public void handleSubmit(ActionEvent e) {
 		// get shared user and password models
-		UserModel user = super.getUserModel();
+		UserModel user = UserModel.getUserModel();
 		PasswordModel passwordModel = user.getPasswordModel();
 		
 		// check if previous password was incorrect
@@ -139,6 +138,7 @@ public class ChangePasswordController extends SceneController implements Initial
 		// display success message (TODO!) and redirect to home page
 		super.switchToView(e, View.HOME, View.CHANGE_PASSWORD);
 	}
+	
 	
 	public void handleCancelBtnClick(ActionEvent e) {
 		super.switchToPrevView(e, View.CHANGE_PASSWORD);
