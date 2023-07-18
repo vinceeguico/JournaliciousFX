@@ -1,12 +1,10 @@
-package application.login;
+package application.controllers;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.SceneController;
-
-import models.PasswordModel;
-import models.UserModel;
+import application.models.PasswordModel;
+import application.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;

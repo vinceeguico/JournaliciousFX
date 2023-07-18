@@ -1,4 +1,4 @@
-package models;
+package application.models;
 
 /**
  * A class representing a Password for the application,

@@ -1,6 +1,5 @@
-package application.search;
+package application.controllers;
 
-import application.SceneController;
 import javafx.event.ActionEvent;
 
 /**

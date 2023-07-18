@@ -1,14 +1,14 @@
-package application;
+package application.controllers;
 
 import java.io.IOException;
 
+import application.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import models.UserModel;
 
 /**
  * Parent class for all scene controllers
@@ -54,6 +54,7 @@ public class SceneController {
 		} catch (IOException ex) {
 			System.out.println("Failed to switch scene");
 			System.out.println(ex.getMessage());
+			ex.printStackTrace();
 		}
 	}
 	
@@ -62,12 +63,12 @@ public class SceneController {
 	 * Enumerates all possible views the application can switch to
 	 */
 	protected enum View {
-		LOGIN("/application/login/Login.fxml"),
-		HOME("/application/home/Home.fxml"),
-		CHANGE_PASSWORD("/application/changePassword/ChangePassword.fxml"),
-		RESET_PASSWORD("/application/resetPassword/ResetPassword.fxml"),
-		CREATE("/application/create/Create.fxml"),
-		SEARCH("/application/search/Search.fxml");
+		LOGIN("/application/views/Login.fxml"),
+		HOME("/application/views/Home.fxml"),
+		CHANGE_PASSWORD("/application/views/ChangePassword.fxml"),
+		RESET_PASSWORD("/application/views/ResetPassword.fxml"),
+		CREATE("/application/views/Create.fxml"),
+		SEARCH("/application/views/Search.fxml");
 		
 		private final String view;
 		
