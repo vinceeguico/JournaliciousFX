@@ -11,12 +11,12 @@ import javafx.event.ActionEvent;
 public class CreateController extends SceneController {
 	
 	/**
-	 * Handles clicks on "Back Home" button.
+	 * Handles clicks on "Home" button.
 	 * 
 	 * @param e An event given by some user action on the application
 	 */
 	public void handleBackHomeClick(ActionEvent e) {
-		super.switchToView(e, View.HOME);
+		super.switchToView(e, View.HOME, View.CREATE);
 	}
 	
 }

@@ -15,7 +15,7 @@ public class SearchController extends SceneController {
 	 * @param e An event given by some user action on the application.
 	 */
 	public void handleBackHomeClick(ActionEvent e) {
-		super.switchToView(e, View.HOME);
+		super.switchToView(e, View.HOME, View.SEARCH);
 	}
 	
 }

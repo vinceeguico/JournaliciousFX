@@ -49,11 +49,11 @@ public class LoginController extends SceneController implements Initializable {
 		if (this.passwordModel.isCorrectPassword(enteredPassword)) {
 			// first time users must go to  change password
 			if (this.passwordModel.isFirstTimeUser()) {
-				super.switchToView(e, View.CHANGE_PASSWORD);
+				super.switchToView(e, View.CHANGE_PASSWORD, View.LOGIN);
 			}
 			// returning users go straight to home
 			else {
-				super.switchToView(e, View.HOME);
+				super.switchToView(e, View.HOME, View.LOGIN);
 			}
 		}
 		else {
@@ -77,7 +77,7 @@ public class LoginController extends SceneController implements Initializable {
 	 * @param e an event given by some user action on the application
 	 */
 	public void handleForgotPassword(ActionEvent e) {
-		super.switchToView(e, View.RESET_PASSWORD);
+		super.switchToView(e, View.RESET_PASSWORD, View.LOGIN);
 	}
 	
 	

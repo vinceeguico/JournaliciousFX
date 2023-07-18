@@ -15,7 +15,7 @@ public class HomeController extends SceneController {
 	 * @param e An event given by some user action on the application.
 	 */
 	public void switchToLogin(ActionEvent e) {
-		super.switchToView(e, View.LOGIN);
+		super.switchToView(e, View.LOGIN, View.HOME);
 	}
 	
 	/**
@@ -24,7 +24,7 @@ public class HomeController extends SceneController {
 	 * @param e An event given by some user action on the application.
 	 */
 	public void switchToCreate(ActionEvent e) {
-		super.switchToView(e, View.CREATE);
+		super.switchToView(e, View.CREATE, View.HOME);
 	}
 	
 	/**
@@ -33,7 +33,7 @@ public class HomeController extends SceneController {
 	 * @param e An event given by some user action on the application.
 	 */
 	public void switchToSearch(ActionEvent e) {
-		super.switchToView(e, View.SEARCH);
+		super.switchToView(e, View.SEARCH, View.HOME);
 	}
 	
 	/**
@@ -42,7 +42,7 @@ public class HomeController extends SceneController {
 	 * @param e An event given by some user action on the application.
 	 */
 	public void switchToChangePassword(ActionEvent e) {
-		super.switchToView(e, View.CHANGE_PASSWORD);
+		super.switchToView(e, View.CHANGE_PASSWORD, View.HOME);
 	}
 	
 }

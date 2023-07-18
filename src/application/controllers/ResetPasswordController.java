@@ -18,8 +18,10 @@ public class ResetPasswordController extends SceneController {
 	 * 
 	 * @param e An event given by some user action on the application.
 	 */
-	public void handleBackToLoginClick(ActionEvent e) {
-		super.switchToView(e, View.LOGIN);
+	public void handleBackBtnClick(ActionEvent e) {
+		super.switchToView(e, View.LOGIN, View.RESET_PASSWORD);
 	}
+	
+
 	
 }

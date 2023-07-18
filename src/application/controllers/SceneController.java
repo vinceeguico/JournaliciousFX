@@ -16,10 +16,11 @@ import javafx.stage.Stage;
  * 
  * @author Chase Barman
  */
-public class SceneController {
+class SceneController {
 	
-	// instance made static to avoid being reset upon re-instantiation
+	// class variables made static to avoid being reset upon re-instantiation
 	private static UserModel user = new UserModel();
+	private static View prevView;
 	
 	
 	/**
@@ -31,15 +32,27 @@ public class SceneController {
 		return user;
 	}
 	
+	
+	private static void setPrevView(View view) {
+		prevView = view;
+	}
+	
+	private static View getPrevView() {
+		return prevView;
+	}
+	
 
 	/**
 	 * Handles the logic for switching from one view to another
 	 * 
 	 * @param e an event given by some user action on the application
 	 * @param view one of the scene views offered by the View enum
+	 * @param prevView the view that you are switching from
 	 */
-	protected void switchToView(ActionEvent e, View view) {
+	protected void switchToView(ActionEvent e, View view, View prevView) {
 		try {
+			setPrevView(prevView);
+			
 			// load the view from fxml file and create new scene
 			BorderPane root = FXMLLoader.load(getClass().getResource(view.getValue()));
 			Scene scene = new Scene(root);
@@ -56,6 +69,11 @@ public class SceneController {
 			System.out.println(ex.getMessage());
 			ex.printStackTrace();
 		}
+	}
+	
+	
+	protected void switchToPrevView(ActionEvent e, View currView) {
+		this.switchToView(e, getPrevView(), currView);
 	}
 	
 	

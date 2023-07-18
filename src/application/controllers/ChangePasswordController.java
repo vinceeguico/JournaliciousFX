@@ -137,7 +137,11 @@ public class ChangePasswordController extends SceneController implements Initial
 		passwordModel.setPassword(newPassword);
 		
 		// display success message (TODO!) and redirect to home page
-		super.switchToView(e, View.HOME);
+		super.switchToView(e, View.HOME, View.CHANGE_PASSWORD);
+	}
+	
+	public void handleCancelBtnClick(ActionEvent e) {
+		super.switchToPrevView(e, View.CHANGE_PASSWORD);
 	}
 	
 }
