@@ -2,6 +2,8 @@ package application.resetPassword;
 
 import application.SceneController;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 
 /**
  * Controller for the "Reset Password" screen.
@@ -9,6 +11,8 @@ import javafx.event.ActionEvent;
  * @author Vince Eguico
  */
 public class ResetPasswordController extends SceneController {
+	
+	@FXML private Label securityQuestion;
 	
 	/**
 	 * Handles clicks on "Reset Password" screen.
