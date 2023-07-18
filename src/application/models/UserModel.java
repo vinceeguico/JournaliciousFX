@@ -1,4 +1,4 @@
-package models;
+package application.models;
 
 /**
  * A class that handles backend logic for user data.

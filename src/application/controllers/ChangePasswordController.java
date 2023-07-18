@@ -1,10 +1,11 @@
-package application.changePassword;
+package application.controllers;
 
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import application.SceneController;
+import application.models.PasswordModel;
+import application.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -12,8 +13,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import models.PasswordModel;
-import models.UserModel;
 
 /** 
  * Controller class for Change Password page

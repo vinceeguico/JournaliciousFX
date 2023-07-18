@@ -1,6 +1,5 @@
-package application.home;
+package application.controllers;
 
-import application.SceneController;
 import javafx.event.ActionEvent;
 
 /**
