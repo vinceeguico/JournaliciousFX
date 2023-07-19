@@ -20,8 +20,6 @@ import javafx.scene.input.KeyEvent;
  * @author Chase Barman
  */
 public class LoginController extends SceneController implements Initializable {
-	private PasswordModel passwordModel;
-	
 	@FXML private TextField passwordField;
 	@FXML private Label errorMsgLbl;
 	@FXML private Button loginBtn;
@@ -32,10 +30,8 @@ public class LoginController extends SceneController implements Initializable {
 	 * gains access to user and password models
 	 */
 	public LoginController() {
-		UserModel user = UserModel.getUserModel();
-		this.passwordModel = user.getPasswordModel();
+
 	}
-	
 	
 	/**
 	 * Handles logic for clicking the login button
@@ -43,12 +39,14 @@ public class LoginController extends SceneController implements Initializable {
 	 * @param e an event given by some user action on the application
 	 */
 	public void handleLoginAttempt(ActionEvent e) {		
+		UserModel user = UserModel.getUserModel();
+		PasswordModel passwordModel = user.getPasswordModel();
 		
 		// logs in user, redirecting them to the next page
 		String enteredPassword = passwordField.getText();
-		if (this.passwordModel.isCorrectPassword(enteredPassword)) {
+		if (passwordModel.isCorrectPassword(enteredPassword)) {
 			// first time users must go to  change password
-			if (this.passwordModel.isFirstTimeUser()) {
+			if (passwordModel.isFirstTimeUser()) {
 				super.switchToView(e, View.CHANGE_PASSWORD, View.LOGIN);
 			}
 			// returning users go straight to home
@@ -61,7 +59,7 @@ public class LoginController extends SceneController implements Initializable {
 			passwordField.setText("");
 			
 			// display error message depending on user status
-			if (!this.passwordModel.isFirstTimeUser()) {
+			if (!passwordModel.isFirstTimeUser()) {
 				errorMsgLbl.setText("Error: Password is invalid");
 			}
 			else {
@@ -69,6 +67,7 @@ public class LoginController extends SceneController implements Initializable {
 			}
 		}
 	}
+
 	
 	
 	/**
@@ -103,8 +102,11 @@ public class LoginController extends SceneController implements Initializable {
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		UserModel user = UserModel.getUserModel();
+		PasswordModel passwordModel = user.getPasswordModel();
+		
 		// if first time user, display message reminder about default password
-		if (this.passwordModel.isFirstTimeUser()) {
+		if (passwordModel.isFirstTimeUser()) {
 			errorMsgLbl.setText("Reminder: On first time login, default password is \"p\"");
 		}
 	}

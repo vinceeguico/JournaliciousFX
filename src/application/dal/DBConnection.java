@@ -8,15 +8,18 @@ import java.sql.Connection;
 
 // Singleton
 public class DBConnection {
-	private static final String jdbcPathURL = "jdbc:sqlite:resources/sqlite/test.sqlite";
+	private static final String jdbcPathURL = "jdbc:sqlite:resources/sqlite/";
 	
 	private static DBConnection dbConnection = new DBConnection();
-	private static Connection connection;
+	
+	private static Connection testDBConnection;
+	private static Connection userInfoDBConnection;
 	
 	private DBConnection() {
 		try {
 			
-			connection = DriverManager.getConnection(jdbcPathURL);
+			testDBConnection = DriverManager.getConnection(jdbcPathURL + Databases.TEST.getValue());
+			userInfoDBConnection = DriverManager.getConnection(jdbcPathURL + Databases.USER_INFO.getValue());
 			
 		} catch (Exception ex) {
 			
@@ -25,23 +28,55 @@ public class DBConnection {
 		}
 	}
 	
-	public static DBConnection getDBConnection() {
+	public static DBConnection getDBConnectionSingletonInstance() {
 		return dbConnection;
 	}
 	
 	
+	public static Connection getDBConnection(Databases db) throws Exception {
+		Connection connection = null;
+		switch (db) {
+			case TEST:
+				connection = testDBConnection;
+				break;
+			case USER_INFO:
+				connection = userInfoDBConnection;
+				break;
+			default:
+				throw new Exception("The database you wish to connect to is not supported!");
+		}
+		
+		return connection;
+	}
 	
-	public void test() {
-		printNames();
-//		insertEntry(3, "Jean", 50);
+	
+	
+	public enum Databases {
+		TEST("test.sqlite"),
+		USER_INFO("user-info.sqlite");
+		
+		private final String db;
+		
+		private Databases(String db) {
+			this.db = db;
+		}
+
+		public String getValue() {
+			return this.db;
+		}
+	}
+	
+	
+	
+	public static void test() {
 		printNames();
 	}
 	
-	private void printNames() {
+	private static void printNames() {
 		try {
 			String query = "SELECT * FROM NAMES";
 			
-			Statement statement = connection.createStatement();
+			Statement statement = testDBConnection.createStatement();
 			ResultSet queryOutput = statement.executeQuery(query);
 			
 			while (queryOutput.next()) {
@@ -54,12 +89,12 @@ public class DBConnection {
 		}
 	}
 	
-	private void insertEntry(int id, String name, int age) {
+	private static void insertEntry(int id, String name, int age) {
 		try {
 			
 			String update = "INSERT INTO NAMES (id, name, age) VALUES (?, ?, ?)";
 			
-			PreparedStatement statement = connection.prepareStatement(update);
+			PreparedStatement statement = testDBConnection.prepareStatement(update);
 			statement.setInt(1, id);
 			statement.setString(2, name);
 			statement.setInt(3, age);
