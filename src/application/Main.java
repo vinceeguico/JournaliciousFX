@@ -1,13 +1,7 @@
 package application;
 	
 import java.io.File;
-import java.sql.Connection;
 
-import application.dal.DBConnection;
-import application.dal.DBConnection.Databases;
-import application.models.UserModel;
-import application.dal.PasswordDAO;
-import application.dal.UserDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -36,7 +30,6 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Journalicious");
 			primaryStage.show();
-		
 			
 		} catch(Exception e) {
 			e.printStackTrace();

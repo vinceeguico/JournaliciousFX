@@ -23,8 +23,8 @@ public class UserDAO {
 			
 			ResultSet queryOutput = statement.executeQuery();
 			
-			while (queryOutput.next()) {
-				securityQuestion += queryOutput.getString("security_question");
+			if (queryOutput.next()) {
+				securityQuestion = queryOutput.getString("security_question");
 			}
 			
 		} catch (Exception ex) {
@@ -47,7 +47,6 @@ public class UserDAO {
 			statement.setString(2, USER_INFO_ROW_ID);
 			
 			statement.executeUpdate();
-			System.out.println("Security Question set!");
 			
 		} catch (Exception e) {
 			System.out.println("Failed to update security question in user-info.sqlite!");
@@ -70,8 +69,8 @@ public class UserDAO {
 			
 			ResultSet queryOutput = statement.executeQuery();
 			
-			while (queryOutput.next()) {
-				securityQuestionAnswer += queryOutput.getString("security_question_answer");
+			if (queryOutput.next()) {
+				securityQuestionAnswer = queryOutput.getString("security_question_answer");
 			}
 			
 		} catch (Exception ex) {
@@ -83,18 +82,17 @@ public class UserDAO {
 	}
 	
 	public void setSecurityQuestionAnswer(String newSecurityQuestionAnswer) {
-		String query = "UPDATE user_info SET security_question_answer = ? WHERE id = ?";
+		String updateQuery = "UPDATE user_info SET security_question_answer = ? WHERE id = ?";
 		
 		try {
 			
 			Connection connection = DBConnection.getDBConnection(Databases.USER_INFO);
-			PreparedStatement statement = connection.prepareStatement(query);
+			PreparedStatement statement = connection.prepareStatement(updateQuery);
 			
 			statement.setString(1,  newSecurityQuestionAnswer);
 			statement.setString(2, USER_INFO_ROW_ID);
 			
 			statement.executeUpdate();
-			System.out.println("Security Question Answer set!");
 			
 		} catch (Exception e) {
 			System.out.println("Failed to update security question answer in user-info.sqlite!");

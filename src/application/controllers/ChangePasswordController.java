@@ -38,7 +38,6 @@ public class ChangePasswordController extends SceneController implements Initial
 	
 	private boolean isSecurityQuestionSelected;
 	private String securityQuestion;
-	private String securityQuestionAnswer;
 	
 	
 	/**
@@ -132,7 +131,7 @@ public class ChangePasswordController extends SceneController implements Initial
 		
 		// submit fields' data to "DB" (stored in model object's state for now)
 		user.setSecurityQuestion(this.securityQuestion);
-		user.setSecurityQuestionAnswer(this.securityQuestionAnswer);
+		user.setSecurityQuestionAnswer(securityQuestionAnswer);
 		passwordModel.setPassword(newPassword);
 		
 		// display success message (TODO!) and redirect to home page
