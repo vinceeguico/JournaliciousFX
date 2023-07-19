@@ -10,6 +10,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /**
  * Controller for the "Reset Password" screen.
@@ -78,5 +80,11 @@ public class ResetPasswordController extends SceneController implements Initiali
 		super.switchToView(e, View.HOME, View.RESET_PASSWORD);
 	}
 
+	public void handleKeyPress(KeyEvent e) {
+		if (e.getCode() == KeyCode.ENTER) {
+			ActionEvent actionEvent = new ActionEvent(e.getSource(), e.getTarget());
+			handleSubmit(actionEvent);
+		}
+	}
 	
 }

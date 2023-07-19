@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
 
 /** 
  * Controller class for Change Password page
@@ -138,6 +140,13 @@ public class ChangePasswordController extends SceneController implements Initial
 		super.switchToView(e, View.HOME, View.CHANGE_PASSWORD);
 	}
 	
+	
+	public void handleKeyPress(KeyEvent e) {
+		if (e.getCode() == KeyCode.ENTER) {
+			ActionEvent actionEvent = new ActionEvent(e.getSource(), e.getTarget());
+			handleSubmit(actionEvent);
+		}
+	}
 	
 	public void handleCancelBtnClick(ActionEvent e) {
 		super.switchToPrevView(e, View.CHANGE_PASSWORD);
