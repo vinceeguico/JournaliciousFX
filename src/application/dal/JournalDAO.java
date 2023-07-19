@@ -47,7 +47,7 @@ public class JournalDAO {
 			
 			ResultSet results = statement.executeQuery(query);
 			while (results.next()) {
-				System.out.println(results.getString("title"));
+				System.out.println(results.getString("context"));
 			}
 			
 			

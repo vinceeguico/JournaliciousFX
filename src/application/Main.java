@@ -2,7 +2,6 @@ package application;
 	
 import java.io.File;
 
-import application.dal.JournalDAO;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -31,9 +30,6 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.setTitle("Journalicious");
 			primaryStage.show();
-			
-			JournalDAO j = new JournalDAO();
-			j.getJournals();
 			
 		} catch(Exception e) {
 			e.printStackTrace();
