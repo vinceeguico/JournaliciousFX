@@ -1,5 +1,7 @@
 package application;
 	
+import java.io.File;
+
 import application.dal.DBConnection;
 import javafx.application.Application;
 import javafx.stage.Stage;
@@ -21,10 +23,13 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/application/views/Login.fxml"));
+			File file = new File("resources/views/Login.fxml");
+			BorderPane root = FXMLLoader.load(file.toURI().toURL());
+			
 			Scene scene = new Scene(root, 600, 400);
 			
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Journalicious");
 			primaryStage.show();
 			
 			

@@ -8,7 +8,7 @@ import java.sql.Connection;
 
 // Singleton
 public class DBConnection {
-	private static final String jdbcPathURL = "jdbc:sqlite:src/application/resources/test.sqlite";
+	private static final String jdbcPathURL = "jdbc:sqlite:resources/sqlite/test.sqlite";
 	
 	private static DBConnection dbConnection = new DBConnection();
 	private static Connection connection;
