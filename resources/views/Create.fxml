@@ -129,4 +129,7 @@
          </left>
       </BorderPane>
    </top>
+   <bottom>
+      <Label fx:id="errorMsgLbl" textFill="RED" BorderPane.alignment="CENTER" />
+   </bottom>
 </BorderPane>

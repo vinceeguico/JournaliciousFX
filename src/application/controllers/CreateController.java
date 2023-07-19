@@ -10,6 +10,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.DatePicker;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
@@ -28,6 +29,7 @@ public class CreateController extends SceneController implements Initializable {
 	@FXML private Spinner<Integer> hourSpinner;
 	@FXML private Spinner<Integer> minuteSpinner;
 	@FXML private TextArea journalContextArea;
+	@FXML private Label errorMsgLbl;
 	
 	// formats the hour and minute spinners to have leading 0s
 	private static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
@@ -44,13 +46,18 @@ public class CreateController extends SceneController implements Initializable {
 				return Integer.parseInt(str);
 				
 			} catch (NumberFormatException ex) {
-				return 0;
+				return -1;
 			}
 		}
 	};
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
+		// add event listener to the time spinners 
+		// that updates the field when the user clicks out of the spinner
+		addFocusLostEventListener(hourSpinner);
+		addFocusLostEventListener(minuteSpinner);
+		
 		// set the limits of the hour spinner
 		SpinnerValueFactory<Integer> hourValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 23);
 		hourValueFactory.setConverter(TIME_FORMAT_CONVERTER);
@@ -73,6 +80,17 @@ public class CreateController extends SceneController implements Initializable {
 		minuteSpinner.setValueFactory(minuteValueFactory);
 	}
 	
+	private void addFocusLostEventListener(Spinner spinner) {
+		// add listener to the focus property of the spinner
+		// addListener takes ChangeListener Functional Interface implementation as argument
+		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
+			// If there is not a new value, reset spinner to default
+			if (!newValue) {
+				spinner.increment(0);
+			}
+		});
+	}
+	
 	
 	/**
 	 * Handles clicks on "Home" button.
@@ -83,18 +101,19 @@ public class CreateController extends SceneController implements Initializable {
 		super.switchToView(e, View.HOME, View.CREATE);
 	}
 	
+	
 	public void handleSave(ActionEvent e) {
 		// get title and context
 		String title = titleField.getText();
 		String context = journalContextArea.getText();
 		
+		// get time
+		int hour = hourSpinner.getValue();
+		int minute = minuteSpinner.getValue();
+		
 		// get date
 		LocalDate enteredDate = datePicker.getValue();
 		String date = enteredDate.toString();
-		
-		// check for valid time
-		int hour = hourSpinner.getValue();
-		int minute = minuteSpinner.getValue();
 		
 		// update DB
 		JournalDAO journalDao = new JournalDAO();
@@ -105,9 +124,17 @@ public class CreateController extends SceneController implements Initializable {
 	}
 	
 	public void handleCancel(ActionEvent e) {
-		// check for unfinished work and display warning msg
+		String title = titleField.getText();
+		String context = journalContextArea.getText();
 		
+		// check for unfinished work and display warning msg
+		boolean fieldsAreEdited = (!title.equals("") || !context.equals(""));
+		if (fieldsAreEdited) {
+			
+		}
+
 		// switch to home page
+		super.switchToView(e, View.HOME, View.CREATE);
 	}
 	
 }
