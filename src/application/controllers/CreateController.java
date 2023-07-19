@@ -9,6 +9,8 @@ import application.dal.JournalDAO;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
@@ -51,6 +53,18 @@ public class CreateController extends SceneController implements Initializable {
 		}
 	};
 	
+	
+	private void addFocusLostEventListener(Spinner spinner) {
+		// add listener to the focus property of the spinner
+		// addListener takes ChangeListener Functional Interface implementation as argument
+		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
+			// If there is not a new value, reset spinner to default
+			if (!newValue) {
+				spinner.increment(0);
+			}
+		});
+	}
+	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// add event listener to the time spinners 
@@ -80,17 +94,6 @@ public class CreateController extends SceneController implements Initializable {
 		minuteSpinner.setValueFactory(minuteValueFactory);
 	}
 	
-	private void addFocusLostEventListener(Spinner spinner) {
-		// add listener to the focus property of the spinner
-		// addListener takes ChangeListener Functional Interface implementation as argument
-		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
-			// If there is not a new value, reset spinner to default
-			if (!newValue) {
-				spinner.increment(0);
-			}
-		});
-	}
-	
 	
 	/**
 	 * Handles clicks on "Home" button.
@@ -98,7 +101,32 @@ public class CreateController extends SceneController implements Initializable {
 	 * @param e An event given by some user action on the application
 	 */
 	public void handleBackHomeClick(ActionEvent e) {
-		super.switchToView(e, View.HOME, View.CREATE);
+		String title = titleField.getText();
+		String context = journalContextArea.getText();
+		
+		boolean fieldsAreEdited = (!title.equals("") || !context.equals(""));
+		if (fieldsAreEdited) {
+			this.showAlert(e);
+		}
+		else {
+			super.switchToView(e, View.HOME, View.CREATE);
+		}
+	}
+	
+	private void showAlert(ActionEvent e) {
+		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+		alert.setTitle("Confirm Leaving Page");
+		alert.setHeaderText("Warning!");
+		alert.setContentText("Are you sure you would like to leave this page? All progress will be lost if you select \"OK\".");
+		
+		// if user confirms, redirect to home page
+		alert.setOnCloseRequest(event -> {
+			if (alert.getResult() == ButtonType.OK) {
+				super.switchToView(e, View.HOME, View.CREATE);
+			}
+		});
+			
+		alert.show();
 	}
 	
 	
@@ -121,20 +149,5 @@ public class CreateController extends SceneController implements Initializable {
 		
 		// display success message (TODO!) and switch to home page
 		super.switchToView(e, View.HOME, View.CREATE);
-	}
-	
-	public void handleCancel(ActionEvent e) {
-		String title = titleField.getText();
-		String context = journalContextArea.getText();
-		
-		// check for unfinished work and display warning msg
-		boolean fieldsAreEdited = (!title.equals("") || !context.equals(""));
-		if (fieldsAreEdited) {
-			
-		}
-
-		// switch to home page
-		super.switchToView(e, View.HOME, View.CREATE);
-	}
-	
+	}	
 }
