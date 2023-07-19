@@ -14,12 +14,14 @@ public class DBConnection {
 	
 	private static Connection testDBConnection;
 	private static Connection userInfoDBConnection;
+	private static Connection journalsDBConnection;
 	
 	private DBConnection() {
 		try {
 			
-			testDBConnection = DriverManager.getConnection(jdbcPathURL + Databases.TEST.getValue());
-			userInfoDBConnection = DriverManager.getConnection(jdbcPathURL + Databases.USER_INFO.getValue());
+			testDBConnection = DriverManager.getConnection(jdbcPathURL + Database.TEST.getValue());
+			userInfoDBConnection = DriverManager.getConnection(jdbcPathURL + Database.USER_INFO.getValue());
+			journalsDBConnection = DriverManager.getConnection(jdbcPathURL + Database.JOURNALS.getValue());
 			
 		} catch (Exception ex) {
 			
@@ -33,7 +35,7 @@ public class DBConnection {
 	}
 	
 	
-	public static Connection getDBConnection(Databases db) throws Exception {
+	public static Connection getDBConnection(Database db) throws Exception {
 		Connection connection = null;
 		switch (db) {
 			case TEST:
@@ -41,6 +43,9 @@ public class DBConnection {
 				break;
 			case USER_INFO:
 				connection = userInfoDBConnection;
+				break;
+			case JOURNALS:
+				connection = journalsDBConnection;
 				break;
 			default:
 				throw new Exception("The database you wish to connect to is not supported!");
@@ -51,13 +56,14 @@ public class DBConnection {
 	
 	
 	
-	public enum Databases {
+	public enum Database {
 		TEST("test.sqlite"),
-		USER_INFO("user-info.sqlite");
+		USER_INFO("user_info_db.sqlite"),
+		JOURNALS("journals_db.sqlite");
 		
 		private final String db;
 		
-		private Databases(String db) {
+		private Database(String db) {
 			this.db = db;
 		}
 

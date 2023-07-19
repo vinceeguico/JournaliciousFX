@@ -5,7 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
-import application.dal.DBConnection.Databases;
+import application.dal.DBConnection.Database;
 
 public class UserDAO {
 	private static final String USER_INFO_ROW_ID = "info";
@@ -16,7 +16,7 @@ public class UserDAO {
 		
 		try {
 			
-			Connection connection = DBConnection.getDBConnection(Databases.USER_INFO);
+			Connection connection = DBConnection.getDBConnection(Database.USER_INFO);
 			PreparedStatement statement = connection.prepareStatement(query);
 			
 			statement.setString(1, USER_INFO_ROW_ID);
@@ -40,7 +40,7 @@ public class UserDAO {
 		
 		try {
 			
-			Connection connection = DBConnection.getDBConnection(Databases.USER_INFO);
+			Connection connection = DBConnection.getDBConnection(Database.USER_INFO);
 			PreparedStatement statement = connection.prepareStatement(updateQuery);
 			
 			statement.setString(1, newSecurityQuestion);
@@ -62,7 +62,7 @@ public class UserDAO {
 		
 		try {
 			
-			Connection connection = DBConnection.getDBConnection(Databases.USER_INFO);
+			Connection connection = DBConnection.getDBConnection(Database.USER_INFO);
 			PreparedStatement statement = connection.prepareStatement(query);
 			
 			statement.setString(1, USER_INFO_ROW_ID);
@@ -86,7 +86,7 @@ public class UserDAO {
 		
 		try {
 			
-			Connection connection = DBConnection.getDBConnection(Databases.USER_INFO);
+			Connection connection = DBConnection.getDBConnection(Database.USER_INFO);
 			PreparedStatement statement = connection.prepareStatement(updateQuery);
 			
 			statement.setString(1,  newSecurityQuestionAnswer);
