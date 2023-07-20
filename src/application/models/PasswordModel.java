@@ -1,5 +1,7 @@
 package application.models;
 
+import application.dal.PasswordDAO;
+
 /**
  * A class representing a Password for the application,
  * handles all logic related to storing and checking a password
@@ -7,28 +9,21 @@ package application.models;
  * @author Chase Barman
  */
 public class PasswordModel {
-
 	private static final String DEFAULT_PASSWORD = "p";
-	
-	private String password;
-	
-	
-	/**
-	 * Constructs a PasswordModel object,
-	 * initializing the password to default password
-	 */
-	public PasswordModel() {
-		this.password = DEFAULT_PASSWORD;
-	}
-	
 	
 	/**
 	 * Changes the password stored in the system
 	 * 
-	 * @param password the new password to change the current password to
+	 * @param newPassword the new password to change the current password to
 	 */
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPassword(String newPassword) {
+		PasswordDAO passDAO = new PasswordDAO();
+		passDAO.setPassword(newPassword);
+	}
+	
+	private String getPassword() {
+		PasswordDAO passDAO = new PasswordDAO();
+		return passDAO.getPassword();
 	}
 	
 	
@@ -38,8 +33,8 @@ public class PasswordModel {
 	 * @return a boolean indicating whether user is a first time user
 	 */
 	public boolean isFirstTimeUser() {
-		
-		if (this.password.equals(DEFAULT_PASSWORD)) {
+		String password = this.getPassword();
+		if (password.equals(DEFAULT_PASSWORD)) {
 			return true;
 		}
 		
@@ -54,8 +49,8 @@ public class PasswordModel {
 	 * @return a boolean indicating if the user entered the correct password
 	 */
 	public boolean isCorrectPassword(String enteredPassword) {
-		
-		if (enteredPassword.equals(this.password)) {
+		String password = this.getPassword();
+		if (enteredPassword.equals(password)) {
 			return true;
 		}
 		

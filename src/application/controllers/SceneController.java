@@ -1,8 +1,8 @@
 package application.controllers;
 
+import java.io.File;
 import java.io.IOException;
 
-import application.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -20,6 +20,7 @@ class SceneController {
 	
 	// class variables made static to avoid being reset upon re-instantiation
 	private static View prevView;
+	private static final String viewPackagePath = "resources/views/";
 	
 	
 	private static void setPrevView(View view) {
@@ -43,7 +44,9 @@ class SceneController {
 			setPrevView(prevView);
 			
 			// load the view from fxml file and create new scene
-			BorderPane root = FXMLLoader.load(getClass().getResource(view.getValue()));
+			String viewPath = viewPackagePath + view.getValue();
+			File viewFile = new File(viewPath);
+			BorderPane root = FXMLLoader.load(viewFile.toURI().toURL());
 			Scene scene = new Scene(root);
 			
 			// Get event source so primary stage can be retrieved
@@ -70,12 +73,12 @@ class SceneController {
 	 * Enumerates all possible views the application can switch to
 	 */
 	protected enum View {
-		LOGIN("/application/views/Login.fxml"),
-		HOME("/application/views/Home.fxml"),
-		CHANGE_PASSWORD("/application/views/ChangePassword.fxml"),
-		RESET_PASSWORD("/application/views/ResetPassword.fxml"),
-		CREATE("/application/views/Create.fxml"),
-		SEARCH("/application/views/Search.fxml");
+		LOGIN("Login.fxml"),
+		HOME("Home.fxml"),
+		CHANGE_PASSWORD("ChangePassword.fxml"),
+		RESET_PASSWORD("ResetPassword.fxml"),
+		CREATE("Create.fxml"),
+		SEARCH("Search.fxml");
 		
 		private final String view;
 		

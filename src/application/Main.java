@@ -1,11 +1,12 @@
 package application;
 	
-import application.dal.DBConnection;
+import java.io.File;
+
 import javafx.application.Application;
-import javafx.stage.Stage;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
-import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
 
 /**
  * Starter class launched upon running application
@@ -21,16 +22,14 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
-			BorderPane root = (BorderPane) FXMLLoader.load(getClass().getResource("/application/views/Login.fxml"));
+			File loginView = new File("resources/views/Login.fxml");
+			BorderPane root = FXMLLoader.load(loginView.toURI().toURL());
+			
 			Scene scene = new Scene(root, 600, 400);
 			
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Journalicious");
 			primaryStage.show();
-			
-			
-			DBConnection db = DBConnection.getDBConnection();
-			db.test();
-			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
