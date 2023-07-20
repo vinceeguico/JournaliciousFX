@@ -3,7 +3,6 @@ package application.controllers;
 import java.io.File;
 import java.io.IOException;
 
-import application.models.UserModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
