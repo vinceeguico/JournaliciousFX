@@ -6,6 +6,9 @@ import java.sql.ResultSet;
 
 import application.dal.DBConnection.Database;
 
+/**
+ * A class that faciliates the interaction and manipulation of user data
+ */
 public class UserDAO {
 	private static final String USER_INFO_ROW_ID = "info";
 
