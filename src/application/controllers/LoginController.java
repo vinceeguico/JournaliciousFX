@@ -24,15 +24,7 @@ public class LoginController extends SceneController implements Initializable {
 	@FXML private Label errorMsgLbl;
 	@FXML private Button loginBtn;
 	@FXML private Hyperlink forgotPasswordLink;
-	
-	
-	/**
-	 * Constructs a new LoginController, 
-	 * gains access to user and password models
-	 */
-	public LoginController() {
 
-	}
 	
 	/**
 	 * Handles logic for clicking the login button
@@ -46,7 +38,7 @@ public class LoginController extends SceneController implements Initializable {
 		// logs in user, redirecting them to the next page
 		String enteredPassword = passwordField.getText();
 		if (passwordModel.isCorrectPassword(enteredPassword)) {
-			// first time users must go to  change password
+			// first time users must go to change password
 			if (passwordModel.isFirstTimeUser()) {
 				super.switchToView(e, View.CHANGE_PASSWORD, View.LOGIN);
 			}
@@ -55,6 +47,7 @@ public class LoginController extends SceneController implements Initializable {
 				super.switchToView(e, View.HOME, View.LOGIN);
 			}
 		}
+		// if user enters wrong password, display error msg and try again
 		else {
 			// reset password field
 			passwordField.setText("");

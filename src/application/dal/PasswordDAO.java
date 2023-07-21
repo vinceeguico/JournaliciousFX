@@ -7,13 +7,14 @@ import java.io.IOException;
 import java.util.Scanner;
 
 /**
- * A class that faciliates the interaction and manipulation of journal data
+ * A class that faciliates the interaction and manipulation of password data
  * within the flat files
  */
 public class PasswordDAO {
 	private static final String passwordPath = "resources/txts/password.txt";
 	private static final File passFile = new File(passwordPath);
 
+	
 	/**
 	 * Gets the password from the file system
 	 * 
@@ -34,6 +35,7 @@ public class PasswordDAO {
 		
 		return password;
 	}
+	
 	
 	/**
 	 * Overwrites the password in the file system

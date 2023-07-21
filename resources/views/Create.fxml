@@ -57,19 +57,25 @@
                         <Font size="20.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="20.0" />
+                        <Insets left="20.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <Spinner fx:id="hourSpinner" editable="true" maxWidth="75.0" />
+                  <Spinner fx:id="hourSpinner" editable="true" maxWidth="75.0">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin></Spinner>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text=":" HBox.hgrow="ALWAYS">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <HBox.margin>
-                        <Insets left="4.0" />
+                        <Insets left="4.0" right="3.0" />
                      </HBox.margin>
                   </Text>
-                  <Spinner fx:id="minuteSpinner" editable="true" maxWidth="75.0" />
+                  <Spinner fx:id="minuteSpinner" editable="true" maxWidth="75.0">
+                     <HBox.margin>
+                        <Insets top="2.0" />
+                     </HBox.margin></Spinner>
                </children>
                <VBox.margin>
                   <Insets />

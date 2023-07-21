@@ -26,16 +26,6 @@ public class ResetPasswordController extends SceneController implements Initiali
 	
 	
 	/**
-	 * Handles clicks on "Reset Password" screen.
-	 * 
-	 * @param e An event given by some user action on the application.
-	 */
-	public void handleBackBtnClick(ActionEvent e) {
-		super.switchToView(e, View.LOGIN, View.RESET_PASSWORD);
-	}
-
-
-	/**
 	 * Initializes the security question label with the user's selected security question
 	 *   
 	 * @param location the location of a file or directory
@@ -51,9 +41,19 @@ public class ResetPasswordController extends SceneController implements Initiali
 		securityQuestionLbl.setText(securityQuestion);
 	}
 	
+	
 	/**
-	 * Handles logic for pressing the "Submit" button on the reset password form,
-	 * Displays error message and breaks if any fields are invalid
+	 * Handles clicks on "Reset Password" screen.
+	 * 
+	 * @param e An event given by some user action on the application.
+	 */
+	public void handleBackBtnClick(ActionEvent e) {
+		super.switchToView(e, View.LOGIN, View.RESET_PASSWORD);
+	}
+	
+	
+	/**
+	 * Handles logic for pressing the "Submit" button on the reset password form
 	 * 
 	 * @param e an event given by some user action on the application.
 	 */
@@ -89,9 +89,10 @@ public class ResetPasswordController extends SceneController implements Initiali
 		super.switchToView(e, View.HOME, View.RESET_PASSWORD);
 	}
 	
+	
 	/**
 	 * Event listener for the "Reset Password" fields for when a key is pressed,
-	 * submits form if the "Submit" button is clicked
+	 * submits form if the ENTER key is clicked
 	 * 
 	 * @param e an event given by some user action on the application.
 	 */
