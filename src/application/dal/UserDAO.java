@@ -3,7 +3,6 @@ package application.dal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 
 import application.dal.DBConnection.Database;
 
@@ -49,7 +48,7 @@ public class UserDAO {
 			statement.executeUpdate();
 			
 		} catch (Exception e) {
-			System.out.println("Failed to update security question in user-info.sqlite!");
+			System.out.println("Failed to update security question in " + Database.USER_INFO.getValue() + "!");
 			e.printStackTrace();
 		}
 	}
@@ -95,7 +94,7 @@ public class UserDAO {
 			statement.executeUpdate();
 			
 		} catch (Exception e) {
-			System.out.println("Failed to update security question answer in user-info.sqlite!");
+			System.out.println("Failed to update security question answer in " + Database.USER_INFO.getValue() + "!");
 			e.printStackTrace();
 		}
 	}
