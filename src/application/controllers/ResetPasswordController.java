@@ -16,7 +16,6 @@ import javafx.scene.input.KeyEvent;
 /**
  * Controller for the "Reset Password" screen.
  * 
- * @author Vince Eguico
  */
 public class ResetPasswordController extends SceneController implements Initializable {
 	@FXML private Label securityQuestionLbl;
@@ -36,7 +35,12 @@ public class ResetPasswordController extends SceneController implements Initiali
 	}
 
 
-	// update security question label
+	/**
+	 * Initializes the security question label with the user's selected security question
+	 *   
+	 * @param location the location of a file or directory
+	 * @param resources the resources required to locate the root element
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// fetch security question
@@ -47,7 +51,12 @@ public class ResetPasswordController extends SceneController implements Initiali
 		securityQuestionLbl.setText(securityQuestion);
 	}
 	
-	
+	/**
+	 * Handles logic for pressing the "Submit" button on the reset password form,
+	 * Displays error message and breaks if any fields are invalid
+	 * 
+	 * @param e an event given by some user action on the application.
+	 */
 	public void handleSubmit(ActionEvent e) {
 		UserModel user = UserModel.getUserModel();
 		PasswordModel passwordModel = user.getPasswordModel();
@@ -79,7 +88,13 @@ public class ResetPasswordController extends SceneController implements Initiali
 		// display success message (TODO!) and switch to home view
 		super.switchToView(e, View.HOME, View.RESET_PASSWORD);
 	}
-
+	
+	/**
+	 * Event listener for the "Reset Password" fields for when a key is pressed,
+	 * submits form if the "Submit" button is clicked
+	 * 
+	 * @param e an event given by some user action on the application.
+	 */
 	public void handleKeyPress(KeyEvent e) {
 		if (e.getCode() == KeyCode.ENTER) {
 			ActionEvent actionEvent = new ActionEvent(e.getSource(), e.getTarget());
