@@ -13,8 +13,6 @@ import javafx.stage.Stage;
 /**
  * Parent class for all scene controllers
  * provides access to a user model that persists through application's lifetime
- * 
- * @author Chase Barman
  */
 class SceneController {
 	
@@ -37,7 +35,7 @@ class SceneController {
 	 * 
 	 * @param e an event given by some user action on the application
 	 * @param view one of the scene views offered by the View enum
-	 * @param prevView the view that you are switching from
+	 * @param prevView the view that the user is switching from
 	 */
 	protected void switchToView(ActionEvent e, View view, View prevView) {
 		try {
@@ -63,7 +61,13 @@ class SceneController {
 		}
 	}
 	
-	
+	/**
+	 * Handles the logic for switching to the view that
+	 * the user was previously on
+	 * 
+	 * @param e an event given by some user action on the application
+	 * @param currView the current view that the user is on
+	 */
 	protected void switchToPrevView(ActionEvent e, View currView) {
 		this.switchToView(e, getPrevView(), currView);
 	}
