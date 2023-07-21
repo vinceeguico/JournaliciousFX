@@ -18,7 +18,6 @@ import javafx.scene.input.KeyEvent;
 /**
  * Controller for the login page, initialized on startup
  * 
- * @author Chase Barman
  */
 public class LoginController extends SceneController implements Initializable {
 	@FXML private TextField passwordField;

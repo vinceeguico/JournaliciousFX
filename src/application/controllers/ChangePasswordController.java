@@ -19,7 +19,6 @@ import javafx.scene.input.KeyEvent;
 /** 
  * Controller class for Change Password page
  * 
- * @author Daniel Howard
  **/
 public class ChangePasswordController extends SceneController implements Initializable {
 	private static final String[] SECURITY_QUESTIONS = {
@@ -140,7 +139,12 @@ public class ChangePasswordController extends SceneController implements Initial
 		super.switchToView(e, View.HOME, View.CHANGE_PASSWORD);
 	}
 	
-	
+	/**
+	 * Event listener on "Change Password" field for when key is pressed,
+	 * submits form if the "Submit" button is pressed
+	 * 
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleKeyPress(KeyEvent e) {
 		if (e.getCode() == KeyCode.ENTER) {
 			ActionEvent actionEvent = new ActionEvent(e.getSource(), e.getTarget());
@@ -148,6 +152,11 @@ public class ChangePasswordController extends SceneController implements Initial
 		}
 	}
 	
+	/**
+	 * Handles clicks on the "Cancel" button.
+	 * 
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleCancelBtnClick(ActionEvent e) {
 		super.switchToPrevView(e, View.CHANGE_PASSWORD);
 	}

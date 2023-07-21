@@ -5,7 +5,6 @@ import javafx.event.ActionEvent;
 /**
  * Controller for the "Home" screen.
  * 
- * @author Vince Eguico
  */
 public class HomeController extends SceneController {
 	
