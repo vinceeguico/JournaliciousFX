@@ -4,9 +4,8 @@ import application.dal.PasswordDAO;
 
 /**
  * A class representing a Password for the application,
- * handles all logic related to storing and checking a password
- * 
- * @author Chase Barman
+ * handles the logic related to checking passwords and 
+ * changing passwords 
  */
 public class PasswordModel {
 	private static final String DEFAULT_PASSWORD = "p";
