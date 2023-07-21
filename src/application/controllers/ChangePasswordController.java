@@ -59,7 +59,6 @@ public class ChangePasswordController extends SceneController implements Initial
 	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
-		
 		securityQuestionChoiceBox.getItems().addAll(SECURITY_QUESTIONS);
 		securityQuestionChoiceBox.setOnAction(this::handleSecurityQuestionSelection);
 	}
@@ -72,7 +71,6 @@ public class ChangePasswordController extends SceneController implements Initial
 	 * @param e an event given by some user action on the application 
 	 **/
 	public void handleSecurityQuestionSelection(ActionEvent e) {
-		
 		this.securityQuestion = securityQuestionChoiceBox.getValue();
 		
 		if (securityQuestion != null) {
@@ -82,16 +80,15 @@ public class ChangePasswordController extends SceneController implements Initial
 			this.isSecurityQuestionSelected = false;
 		}
 	}
-	
+
 	
 	/**
-	 * Handles logic for clicking the submit button on the change password form,
-	 * Displays error message and breaks if any fields are invalid
+	 * Handles logic for clicking the submit button on the change password form
 	 * 
-	 *  @param e an event given by some user action on the application
-	 **/
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleSubmit(ActionEvent e) {
-		// get shared user and password models
+		// get user and password model
 		UserModel user = UserModel.getUserModel();
 		PasswordModel passwordModel = user.getPasswordModel();
 		
@@ -139,9 +136,10 @@ public class ChangePasswordController extends SceneController implements Initial
 		super.switchToView(e, View.HOME, View.CHANGE_PASSWORD);
 	}
 	
+	
 	/**
 	 * Event listener on "Change Password" field for when key is pressed,
-	 * submits form if the "Submit" button is pressed
+	 * submits form if the ENTER key is pressed
 	 * 
 	 * @param e an event given by some user action on the application
 	 */
