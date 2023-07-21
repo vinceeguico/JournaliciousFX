@@ -9,6 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Hyperlink;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
@@ -23,6 +24,7 @@ public class LoginController extends SceneController implements Initializable {
 	@FXML private TextField passwordField;
 	@FXML private Label errorMsgLbl;
 	@FXML private Button loginBtn;
+	@FXML private Hyperlink forgotPasswordLink;
 	
 	
 	/**
@@ -105,8 +107,9 @@ public class LoginController extends SceneController implements Initializable {
 		UserModel user = UserModel.getUserModel();
 		PasswordModel passwordModel = user.getPasswordModel();
 		
-		// if first time user, display message reminder about default password
+		// if first time user, hide reset password and remind them about default password
 		if (passwordModel.isFirstTimeUser()) {
+			forgotPasswordLink.setVisible(false);
 			errorMsgLbl.setText("Reminder: On first time login, default password is \"p\"");
 		}
 	}

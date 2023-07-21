@@ -37,7 +37,7 @@
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Hyperlink onAction="#handleForgotPassword" text="Forgot Password?" textFill="#777777" underline="true" />
+            <Hyperlink fx:id="forgotPasswordLink" onAction="#handleForgotPassword" text="Forgot Password?" textFill="#777777" underline="true" />
             <Label fx:id="errorMsgLbl" textFill="RED">
                <VBox.margin>
                   <Insets top="10.0" />
