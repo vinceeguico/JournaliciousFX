@@ -2,11 +2,10 @@ package application.dal;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
 
-// Singleton
+/**
+ * Singleton class for connecting to an sqlite database
+ */
 public class DBConnection {
 	private static final String jdbcPathURL = "jdbc:sqlite:resources/sqlite/";
 	
@@ -15,6 +14,10 @@ public class DBConnection {
 	private static Connection userInfoDBConnection;
 	private static Connection journalsDBConnection;
 	
+	
+	/**
+	 * Constructs singleton by getting connections to specified databases
+	 */
 	private DBConnection() {
 		try {
 	
@@ -28,11 +31,23 @@ public class DBConnection {
 		}
 	}
 	
+	/**
+	 * Gets the singleton instance of the DBConnection class
+	 * 
+	 * @return an instance of the DBConnection Singleton
+	 */
 	public static DBConnection getDBConnectionSingletonInstance() {
 		return dbConnection;
 	}
 	
 	
+	/**
+	 * Gets a connection to a given database
+	 * 
+	 * @param db One of the database options provided by the Database enum
+	 * @return a connection to a chosen database
+	 * @throws Exception if the database selection is not one of the supported databases from the Database enum
+	 */
 	public static Connection getDBConnection(Database db) throws Exception {
 		Connection connection = null;
 		switch (db) {
@@ -50,7 +65,9 @@ public class DBConnection {
 	}
 	
 	
-	
+	/**
+	 * An enumeration of the possible databases to connect to
+	 */
 	public enum Database {
 		USER_INFO("user_info_db.sqlite"),
 		JOURNALS("journals_db.sqlite");
@@ -61,6 +78,11 @@ public class DBConnection {
 			this.db = db;
 		}
 
+		/**
+		 * Gets the file name of the sqlite database
+		 * 
+		 * @return the file name of the sqlite database
+		 */
 		public String getValue() {
 			return this.db;
 		}

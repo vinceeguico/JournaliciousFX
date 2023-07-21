@@ -7,8 +7,21 @@ import java.sql.Statement;
 
 import application.dal.DBConnection.Database;
 
+/**
+ * A class that faciliates interacting and manipulating journal data
+ * that is stored in the "journals" database
+ */
 public class JournalDAO {
 
+	/**
+	 * Creates a journal entry and inserts it into the journals database
+	 * 
+	 * @param title the title of the journal entry in string format
+	 * @param date the date of the journal entry in string format
+	 * @param hour the hour of the time the journal entry was created in integer format
+	 * @param minute the minute of the time the journal entry was created in integer format
+	 * @param context the context of the journal entry in string format
+	 */
 	public void createJournal(String title, String date, int hour, int minute, String context) {
 		String updateQuery = "INSERT INTO journal (title, date, hour, minute, context) VALUES (?, ?, ?, ?, ?)";
 		
@@ -37,6 +50,10 @@ public class JournalDAO {
 		}
 	}
 	
+	/**
+	 * Experimental method for gathering journal entries from the database.
+	 * Gets the context of every journal entry in the DB
+	 */
 	public void getJournals() {
 		String query = "SELECT * FROM journal";
 		
