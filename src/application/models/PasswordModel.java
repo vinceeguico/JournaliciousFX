@@ -20,6 +20,7 @@ public class PasswordModel {
 		passDAO.setPassword(newPassword);
 	}
 	
+	
 	private String getPassword() {
 		PasswordDAO passDAO = new PasswordDAO();
 		return passDAO.getPassword();

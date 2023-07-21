@@ -16,9 +16,10 @@ import javafx.stage.Stage;
  */
 class SceneController {
 	
-	// class variables made static to avoid being reset upon re-instantiation
-	private static View prevView;
 	private static final String viewPackagePath = "resources/views/";
+	
+	// static class variable to avoid being reset upon re-instantiation
+	private static View prevView;
 	
 	
 	private static void setPrevView(View view) {
@@ -60,6 +61,7 @@ class SceneController {
 			ex.printStackTrace();
 		}
 	}
+	
 	
 	/**
 	 * Handles the logic for switching to the view that

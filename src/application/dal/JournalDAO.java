@@ -8,11 +8,9 @@ import java.sql.Statement;
 import application.dal.DBConnection.Database;
 
 /**
- * A class that faciliates interacting and manipulating journal data
- * that is stored in the "journals" database
+ * A class that faciliates interacting with and manipulating journal data
  */
 public class JournalDAO {
-
 	/**
 	 * Creates a journal entry and inserts it into the journals database
 	 * 

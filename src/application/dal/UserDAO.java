@@ -10,8 +10,15 @@ import application.dal.DBConnection.Database;
  * A class that faciliates the interaction and manipulation of user data
  */
 public class UserDAO {
+	// the id for the row where user info is stored in DB
 	private static final String USER_INFO_ROW_ID = "info";
 
+	
+	/**
+	 * Gets the stored security question from the database
+	 * 
+	 * @return the user's security question
+	 */
 	public String getSecurityQuestion() {
 		String query = "SELECT * FROM user_info WHERE id = ?";
 		String securityQuestion = "";
@@ -37,6 +44,12 @@ public class UserDAO {
 		return securityQuestion;
 	}
 	
+	
+	/**
+	 * Overwrites the user's security question in the database
+	 * 
+	 * @param newSecurityQuestion the new security question selected by the user
+	 */
 	public void setSecurityQuestion(String newSecurityQuestion) {
 		String updateQuery = "UPDATE user_info SET security_question = ? WHERE id = ?";
 		
@@ -57,7 +70,11 @@ public class UserDAO {
 	}
 	
 	
-	
+	/**
+	 * Gets the answer to the user's security question that is stored in the database
+	 * 
+	 * @return the answer to the user's security question
+	 */
 	public String getSecurityQuestionAnswer() {
 		String query = "SELECT * FROM user_info WHERE id = ?";
 		String securityQuestionAnswer = "";
@@ -83,6 +100,12 @@ public class UserDAO {
 		return securityQuestionAnswer;
 	}
 	
+	
+	/**
+	 * Overwrites the answer to the user's security question stored in the database
+	 * 
+	 * @param newSecurityQuestionAnswer the user's new security question answer
+	 */
 	public void setSecurityQuestionAnswer(String newSecurityQuestionAnswer) {
 		String updateQuery = "UPDATE user_info SET security_question_answer = ? WHERE id = ?";
 		

@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 /**
- * Starter class launched upon running application
+ * Starter class that is launched upon running application
  **/
 public class Main extends Application {
 	
@@ -22,6 +22,7 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 			
+			// get the Login View from local files and create scene
 			File loginView = new File("resources/views/Login.fxml");
 			BorderPane root = FXMLLoader.load(loginView.toURI().toURL());
 			
@@ -36,6 +37,12 @@ public class Main extends Application {
 		}
 	}
 	
+	
+	/**
+	 * Main class that launches the JavaFX application
+	 * 
+	 * @param args List of command line arguments to pass to JVM
+	 */
 	public static void main(String[] args) {
 		launch(args);
 	}

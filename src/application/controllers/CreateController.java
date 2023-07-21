@@ -12,7 +12,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TextArea;
@@ -28,8 +27,11 @@ public class CreateController extends SceneController implements Initializable {
 	@FXML private Spinner<Integer> hourSpinner;
 	@FXML private Spinner<Integer> minuteSpinner;
 	@FXML private TextArea journalContextArea;
-	@FXML private Label errorMsgLbl;
 	
+	
+	/**
+	 * A custom string converter object that formats times
+	 */
 	private static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
 		@Override
 		public String toString(Integer val) {
@@ -49,8 +51,9 @@ public class CreateController extends SceneController implements Initializable {
 		}
 	};
 	
+	
+	// event listener that checks if spinners were clicked in/out of
 	private void addFocusLostEventListener(Spinner spinner) {
-		// add listener to the focus property of the spinner
 		// addListener takes ChangeListener Functional Interface implementation as argument
 		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
 			// If there is not a new value, reset spinner to default
@@ -61,8 +64,8 @@ public class CreateController extends SceneController implements Initializable {
 	}
 	
 	/**
-	 * Initializes the fields and autofills each field
-	 * with the correct value
+	 * Initializes the page's fields and autofills each field
+	 * with the default value
 	 * 
 	 * @param location the location of a file or directory
 	 * @param resources the resources required to locate the root element
@@ -115,25 +118,28 @@ public class CreateController extends SceneController implements Initializable {
 		}
 	}
 	
+	
+	// displays alert message warning user they will lose their progress
 	private void showAlert(ActionEvent e) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirm Leaving Page");
 		alert.setHeaderText("Warning!");
 		alert.setContentText("Are you sure you would like to leave this page? All progress will be lost if you select \"OK\".");
 		
-		// if user confirms, redirect to home page
+		// if user hits OK, redirect to home page
 		alert.setOnCloseRequest(event -> {
 			if (alert.getResult() == ButtonType.OK) {
 				super.switchToView(e, View.HOME, View.CREATE);
 			}
 		});
-			
+		
+		// display alert after configuration
 		alert.show();
 	}
 	
+	
 	/**
-	 * Handles logic for clicking the save button on the Create
-	 * page
+	 * Handles logic for clicking the Save button on the Create page
 	 * 
 	 * @param e an event given by some user action on the application
 	 */
@@ -142,7 +148,7 @@ public class CreateController extends SceneController implements Initializable {
 		String title = titleField.getText();
 		String context = journalContextArea.getText();
 		
-		// get time
+		// get time fields
 		int hour = hourSpinner.getValue();
 		int minute = minuteSpinner.getValue();
 		
