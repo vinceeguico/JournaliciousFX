@@ -21,10 +21,7 @@ import javafx.util.StringConverter;
 
 /**
  * Controller for the "Create" page.
- * 
- * @author Vince Eguico
  */
-
 public class CreateController extends SceneController implements Initializable {
 	@FXML private TextField titleField;
 	@FXML private DatePicker datePicker;
@@ -33,7 +30,6 @@ public class CreateController extends SceneController implements Initializable {
 	@FXML private TextArea journalContextArea;
 	@FXML private Label errorMsgLbl;
 	
-	// formats the hour and minute spinners to have leading 0s
 	private static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
 		@Override
 		public String toString(Integer val) {
@@ -53,7 +49,6 @@ public class CreateController extends SceneController implements Initializable {
 		}
 	};
 	
-	
 	private void addFocusLostEventListener(Spinner spinner) {
 		// add listener to the focus property of the spinner
 		// addListener takes ChangeListener Functional Interface implementation as argument
@@ -65,6 +60,13 @@ public class CreateController extends SceneController implements Initializable {
 		});
 	}
 	
+	/**
+	 * Initializes the fields and autofills each field
+	 * with the correct value
+	 * 
+	 * @param location the location of a file or directory
+	 * @param resources the resources required to locate the root element
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// add event listener to the time spinners 
@@ -129,7 +131,12 @@ public class CreateController extends SceneController implements Initializable {
 		alert.show();
 	}
 	
-	
+	/**
+	 * Handles logic for clicking the save button on the Create
+	 * page
+	 * 
+	 * @param e an event given by some user action on the application
+	 */
 	public void handleSave(ActionEvent e) {
 		// get title and context
 		String title = titleField.getText();

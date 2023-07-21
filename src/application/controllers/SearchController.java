@@ -4,8 +4,6 @@ import javafx.event.ActionEvent;
 
 /**
  * Controller for the "Search" screen.
- * 
- * @author Vince Eguico
  */
 public class SearchController extends SceneController {
 	
