@@ -41,6 +41,13 @@
                </font>
             </Label>
          </left>
+         <center>
+            <Label text="Work in progress" BorderPane.alignment="CENTER">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+         </center>
       </BorderPane>
    </top>
    <center>
@@ -68,7 +75,10 @@
                      <children>
                         <HBox alignment="CENTER_LEFT" maxWidth="600.0" prefHeight="100.0" prefWidth="600.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" />
+                              <RadioButton mnemonicParsing="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></RadioButton>
                               <Label prefHeight="100.0" prefWidth="170.0" style="-fx-background-color: white;" text=" Title | mm / dd / yy | 12:12 PM">
                                  <effect>
                                     <InnerShadow />
@@ -92,7 +102,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="600.0" prefHeight="100.0" prefWidth="600.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" />
+                              <RadioButton mnemonicParsing="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></RadioButton>
                               <Label prefHeight="100.0" prefWidth="170.0" style="-fx-background-color: white;" text=" Title | mm / dd / yy | 12:12 PM">
                                  <effect>
                                     <InnerShadow />
@@ -113,7 +126,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="600.0" prefHeight="100.0" prefWidth="600.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" />
+                              <RadioButton mnemonicParsing="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></RadioButton>
                               <Label prefHeight="100.0" prefWidth="170.0" style="-fx-background-color: white;" text=" Title | mm / dd / yy | 12:12 PM">
                                  <effect>
                                     <InnerShadow />
@@ -131,7 +147,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="600.0" prefHeight="100.0" prefWidth="600.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" />
+                              <RadioButton mnemonicParsing="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></RadioButton>
                               <Label prefHeight="100.0" prefWidth="170.0" style="-fx-background-color: white;" text=" Title | mm / dd / yy | 12:12 PM">
                                  <effect>
                                     <InnerShadow />
@@ -149,7 +168,10 @@
                         </HBox>
                         <HBox alignment="CENTER_LEFT" maxWidth="600.0" prefHeight="100.0" prefWidth="600.0">
                            <children>
-                              <RadioButton mnemonicParsing="false" />
+                              <RadioButton mnemonicParsing="false">
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor></RadioButton>
                               <Label prefHeight="40.0" prefWidth="170.0" style="-fx-background-color: white;" text=" Title | mm / dd / yy | 12:12 PM">
                                  <effect>
                                     <InnerShadow />
