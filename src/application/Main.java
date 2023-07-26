@@ -1,7 +1,10 @@
 package application;
 	
 import java.io.File;
+import java.util.ArrayList;
 
+import application.dal.JournalDAO;
+import application.models.JournalModel;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
