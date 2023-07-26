@@ -10,20 +10,30 @@ import application.dal.PasswordDAO;
 public class PasswordModel {
 	private static final String DEFAULT_PASSWORD = "p";
 	
+	private String password;
+	
 	/**
 	 * Changes the password stored in the system
 	 * 
 	 * @param newPassword the new password to change the current password to
 	 */
 	public void setPassword(String newPassword) {
+		// change password in flat files
 		PasswordDAO passDAO = new PasswordDAO();
 		passDAO.setPassword(newPassword);
+		
+		// Redundantly change password in model (already updated when getting password)
+		this.password = newPassword;
 	}
 	
 	
 	private String getPassword() {
+		// update current password to match flat files
 		PasswordDAO passDAO = new PasswordDAO();
-		return passDAO.getPassword();
+		passDAO.updatePassword(this);
+		
+		// return current password
+		return this.password;
 	}
 	
 	
@@ -34,11 +44,9 @@ public class PasswordModel {
 	 */
 	public boolean isFirstTimeUser() {
 		String password = this.getPassword();
-		if (password.equals(DEFAULT_PASSWORD)) {
-			return true;
-		}
+		boolean passwordIsDefault = password.equals(DEFAULT_PASSWORD);
 		
-		return false;
+		return passwordIsDefault;
 	}
 	
 	
@@ -50,11 +58,9 @@ public class PasswordModel {
 	 */
 	public boolean isCorrectPassword(String enteredPassword) {
 		String password = this.getPassword();
-		if (enteredPassword.equals(password)) {
-			return true;
-		}
+		boolean passwordIsCorrect = enteredPassword.equals(password);
 		
-		return false;
+		return passwordIsCorrect;
 	}
 	
 	
@@ -65,12 +71,9 @@ public class PasswordModel {
 	 * @return a boolean indicating whether the user's new password is valid
 	 */
 	public boolean isValidNewPassword(String newPassword) {
-		
-		if (newPassword.equals(DEFAULT_PASSWORD)) {
-			return false;
-		}
-		
-		return true;
+		boolean passwordIsValid = !newPassword.equals(DEFAULT_PASSWORD);
+
+		return passwordIsValid;
 	}
 	
 }

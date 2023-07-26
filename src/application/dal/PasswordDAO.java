@@ -6,6 +6,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
+import application.models.PasswordModel;
+
 /**
  * A class that faciliates the interaction and manipulation of password data
  * within the flat files
@@ -16,11 +18,11 @@ public class PasswordDAO {
 
 	
 	/**
-	 * Gets the password from the file system
+	 * Updates the password of the password model to reflect the password stored in flat files
 	 * 
-	 * @return the user's password that is stored in the file system
+	 * @param passwordModel the password model to be updated
 	 */
-	public String getPassword() {
+	public void updatePassword(PasswordModel passwordModel) {
 		String password = "";
 		try (Scanner in = new Scanner(passFile)) {	
 			
@@ -33,7 +35,7 @@ public class PasswordDAO {
 			e.printStackTrace();
 		}
 		
-		return password;
+		passwordModel.setPassword(password);
 	}
 	
 	
@@ -43,7 +45,6 @@ public class PasswordDAO {
 	 * @param newPassword the new password to store in file system
 	 */
 	public void setPassword(String newPassword) {
-		
 		// if newPassword is null, then user entered an empty string
 		if (newPassword == null) {
 			newPassword = "";
