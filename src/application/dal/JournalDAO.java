@@ -136,12 +136,47 @@ public class JournalDAO {
 			PreparedStatement statement = connection.prepareStatement(updateQuery);
 			
 			statement.setInt(1,  id);
-			statement.executeUpdate();
 			
-			System.out.println("Deleted entry from DB!");
+			int rowsDeleted = statement.executeUpdate();
+			if (rowsDeleted > 0) {
+				System.out.println("Deleted entry from DB!");
+			}
+			else {
+				System.out.println("Could not delete journal from DB!");
+			}
 			
 		} catch (Exception ex) {
 			System.out.println("Failed to delete journal entry from DB!");
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	public void updateJournal(int id, String title, String date, int hour, int minute, String context) {
+		String updateQuery = "UPDATE journal SET title = ?, date = ?, hour = ?, minute = ?, context = ? WHERE id = ?";
+		
+		try {
+			
+			Connection connection = DBConnection.getDBConnection(Database.JOURNALS);
+			PreparedStatement statement = connection.prepareStatement(updateQuery);
+		
+			statement.setString(1, title);
+			statement.setString(2, date);
+			statement.setInt(3, hour);
+			statement.setInt(4, minute);
+			statement.setString(5, context);
+			statement.setInt(6, id);
+			
+			int rowsAdded = statement.executeUpdate();
+			if (rowsAdded > 0) {
+				System.out.println("Updated journal in DB!");	
+			}
+			else {
+				System.out.println("Could not update journal!");
+			}
+			
+		} catch (Exception ex) {
+			System.out.println("Failed to add journal to database!");
 			ex.printStackTrace();
 		}
 	}

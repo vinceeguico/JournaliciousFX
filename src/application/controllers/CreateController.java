@@ -32,7 +32,7 @@ public class CreateController extends SceneController implements Initializable {
 	/**
 	 * A custom string converter object that formats times
 	 */
-	private static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
+	static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
 		@Override
 		public String toString(Integer val) {
 			// pad the time element's value with 0s if it is a single digit
@@ -53,7 +53,7 @@ public class CreateController extends SceneController implements Initializable {
 	
 	
 	// event listener that checks if spinners were clicked in/out of
-	private void addFocusLostEventListener(Spinner spinner) {
+	void addFocusLostEventListener(Spinner spinner) {
 		// addListener takes ChangeListener Functional Interface implementation as argument
 		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
 			// If there is not a new value, reset spinner to default

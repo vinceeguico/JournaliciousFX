@@ -1,5 +1,7 @@
 package application.controllers;
 
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -10,7 +12,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Scene;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -18,8 +23,10 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 /**
  * Controller for the "Search" screen.
@@ -86,8 +93,10 @@ public class SearchController extends SceneController implements Initializable {
 	
 	// TODO!
 	public void handleEdit(ActionEvent e) {
-		
+		JournalModel journal = (JournalModel) this.radioBtnToggleGroup.getSelectedToggle().getUserData();
+		super.switchToEditView(e, journal);
 	}
+	
 	
 	/**
 	 * Handles mouse clicks on the "Search" screen.
