@@ -38,16 +38,6 @@ public class SearchController extends SceneController implements Initializable {
 	}
 	
 	
-	/**
-	 * Handles mouse clicks on the "Search" screen.
-	 * 
-	 * @param e An event given by some user action on the application.
-	 */
-	public void handleBackHomeClick(ActionEvent e) {
-		super.switchToView(e, View.HOME, View.SEARCH);
-	}
-	
-	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {		
 		// add all journals to journalListView
@@ -94,6 +84,21 @@ public class SearchController extends SceneController implements Initializable {
 	}
 	
 	
+	// TODO!
+	public void handleEdit(ActionEvent e) {
+		
+	}
+	
+	/**
+	 * Handles mouse clicks on the "Search" screen.
+	 * 
+	 * @param e An event given by some user action on the application.
+	 */
+	public void handleBackHomeClick(ActionEvent e) {
+		super.switchToView(e, View.HOME, View.SEARCH);
+	}
+	
+	
 	/**
 	 * Event listener on "Enter Password" field for when key is pressed,
 	 * searches keyword if the ENTER key is pressed
@@ -137,6 +142,7 @@ public class SearchController extends SceneController implements Initializable {
 		this.journalsObsList.clear();
 		this.journalsObsList.addAll(userJournals);
 	}
+	
 	
 	
 	/**

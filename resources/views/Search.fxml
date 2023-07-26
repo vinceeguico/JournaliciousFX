@@ -37,13 +37,6 @@
                </font>
             </Label>
          </left>
-         <center>
-            <Label text="Work in progress" BorderPane.alignment="CENTER">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-         </center>
       </BorderPane>
    </top>
    <center>
@@ -76,7 +69,7 @@
    <bottom>
       <BorderPane maxWidth="600.0" prefHeight="50.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <left>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: white;" text="Edit" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleEdit" prefHeight="25.0" prefWidth="280.0" style="-fx-background-color: white;" text="Edit" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets left="15.0" />
                </BorderPane.margin>
