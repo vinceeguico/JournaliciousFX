@@ -28,7 +28,6 @@ public class CreateController extends SceneController implements Initializable {
 	@FXML private Spinner<Integer> minuteSpinner;
 	@FXML private TextArea journalContextArea;
 	
-	
 	/**
 	 * A custom string converter object that formats times
 	 */
@@ -62,6 +61,7 @@ public class CreateController extends SceneController implements Initializable {
 			}
 		});
 	}
+	
 	
 	/**
 	 * Initializes the page's fields and autofills each field
@@ -114,13 +114,13 @@ public class CreateController extends SceneController implements Initializable {
 			this.showAlert(e);
 		}
 		else {
-			super.switchToView(e, View.HOME, View.CREATE);
+			super.switchToPrevView(e, View.CREATE);
 		}
 	}
 	
 	
 	// displays alert message warning user they will lose their progress
-	private void showAlert(ActionEvent e) {
+	void showAlert(ActionEvent e) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirm Leaving Page");
 		alert.setHeaderText("Warning!");
@@ -129,7 +129,7 @@ public class CreateController extends SceneController implements Initializable {
 		// if user hits OK, redirect to home page
 		alert.setOnCloseRequest(event -> {
 			if (alert.getResult() == ButtonType.OK) {
-				super.switchToView(e, View.HOME, View.CREATE);
+				super.switchToPrevView(e, View.CREATE);
 			}
 		});
 		
@@ -161,6 +161,6 @@ public class CreateController extends SceneController implements Initializable {
 		journalDao.createJournal(title, date, hour, minute, context);
 		
 		// display success message (TODO!) and switch to home page
-		super.switchToView(e, View.HOME, View.CREATE);
+		super.switchToPrevView(e, View.CREATE);
 	}	
 }
