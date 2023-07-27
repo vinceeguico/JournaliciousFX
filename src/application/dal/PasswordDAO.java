@@ -20,7 +20,7 @@ public class PasswordDAO {
 	/**
 	 * Updates the password of the password model to reflect the password stored in flat files
 	 * 
-	 * @param passwordModel the password model to be updated
+	 * @param passwordModel the PasswordModel to be updated
 	 */
 	public void updatePassword(PasswordModel passwordModel) {
 		String password = "";

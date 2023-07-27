@@ -51,6 +51,11 @@ public class JournalDAO {
 	}
 	
 
+	/**
+	 * Gets all journal entries that are stored in the DB
+	 * 
+	 * @return an ArrayList containing a JournalModel for every journal in the DB
+	 */
 	public ArrayList<JournalModel> getJournals() {
 		ArrayList<JournalModel> journals = new ArrayList<>();
 		String query = "SELECT * FROM journal";
@@ -63,7 +68,7 @@ public class JournalDAO {
 			// iterate through every row in journals db
 			ResultSet results = statement.executeQuery(query);
 			while (results.next()) {
-				// get column date from row in db
+				// get all fields from the row of the db
 				int id = results.getInt("id");
 				String title = results.getString("title");
 				String date = results.getString("date");
@@ -71,12 +76,10 @@ public class JournalDAO {
 				int minute = results.getInt("minute");
 				String context = results.getString("context");
 				
-				// create a new journal model and add it to output list
+				// create a new JournalModel and add it to output list
 				JournalModel newJournal = new JournalModel(id, title, date, hour, minute, context);
 				journals.add(newJournal);
 			}
-			
-			
 		} catch (Exception ex) {
 			System.out.println("Failed to retrieve journal entries!");
 			ex.printStackTrace();
@@ -85,7 +88,12 @@ public class JournalDAO {
 		return journals;
 	}
 	
-	
+	/**
+	 * Gets all journal entries in the DB that contain a given keyword in the title or context
+	 * 
+	 * @param keyword the keyword that a journal entry must contain
+	 * @return an ArrayList containing a JournalModel for every journal entry in the DB that contains the given keyword
+	 */
 	public ArrayList<JournalModel> getJournals(String keyword) {
 		ArrayList<JournalModel> journals = new ArrayList<>();
 		String updateQuery = "SELECT * FROM journal WHERE title LIKE ? OR context LIKE ?";
@@ -115,8 +123,6 @@ public class JournalDAO {
 				JournalModel newJournal = new JournalModel(id, title, date, hour, minute, context);
 				journals.add(newJournal);
 			}
-			
-			
 		} catch (Exception ex) {
 			System.out.println("Failed to retrieve journal entries!");
 			ex.printStackTrace();
@@ -125,7 +131,11 @@ public class JournalDAO {
 		return journals;
 	}
 	
-	
+	/**
+	 * Deletes a journal entry from the DB given its JournalModel
+	 * 
+	 * @param journal the JournalModel representation of a journal entry
+	 */
 	public void deleteJournal(JournalModel journal) {
 		String updateQuery = "DELETE FROM journal WHERE id = ?";
 		int id = journal.getID();
@@ -144,14 +154,22 @@ public class JournalDAO {
 			else {
 				System.out.println("Could not delete journal from DB!");
 			}
-			
 		} catch (Exception ex) {
 			System.out.println("Failed to delete journal entry from DB!");
 			ex.printStackTrace();
 		}
 	}
 	
-	
+	/**
+	 * Updates an existing journal entry within the DB
+	 * 
+	 * @param id the id of the journal entry in the sqlite DB
+	 * @param title the title of the journal entry
+	 * @param date the date of the journal entry
+	 * @param hour the hour of the time the journal entry was written
+	 * @param minute the minute of the time the journal entry was written
+	 * @param context the context or body of the journal entry
+	 */
 	public void updateJournal(int id, String title, String date, int hour, int minute, String context) {
 		String updateQuery = "UPDATE journal SET title = ?, date = ?, hour = ?, minute = ?, context = ? WHERE id = ?";
 		
@@ -174,7 +192,6 @@ public class JournalDAO {
 			else {
 				System.out.println("Could not update journal!");
 			}
-			
 		} catch (Exception ex) {
 			System.out.println("Failed to add journal to database!");
 			ex.printStackTrace();

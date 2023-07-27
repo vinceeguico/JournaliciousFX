@@ -7,6 +7,7 @@ import java.util.Scanner;
 
 import application.dal.JournalDAO;
 import application.models.JournalModel;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -183,6 +184,7 @@ public class SearchController extends SceneController implements Initializable {
 		// typography constants
 		private static final int TITLE_FONT_SIZE = 15;
 		private static final int DEFAULT_FONT_SIZE = 12;
+		private static final int MIN_NUM_LINES = 4;
 		private static final String ELIPSES = "...";
 		
 		// spacing constants
@@ -278,8 +280,12 @@ public class SearchController extends SceneController implements Initializable {
 				date.setText(journal.getDate());
 				time.setText(journal.getTime());
 				
-				String previewText = constructPreviewText(journal.getContext());
-				context.setText(previewText);
+				// Defer updating preview text until the container has been fully instantiated
+				// so that dimensions of the container can be safely accessed
+				Platform.runLater(() -> {
+					String previewText = constructPreviewText(journal.getContext());
+					context.setText(previewText);
+				});
 				
 				// make the cell visible
 				setGraphic(container);
@@ -290,8 +296,9 @@ public class SearchController extends SceneController implements Initializable {
 		private String constructPreviewText(String text) {
 			String previewText = "";
 			int lineCount = 0;
-			
-			int maxLines = (int) (container.getHeight() / DEFAULT_FONT_SIZE);
+
+			int calculatedMaxLines = (int) (container.getHeight() - 50) / DEFAULT_FONT_SIZE;
+			int maxLines = Math.max(MIN_NUM_LINES, calculatedMaxLines);
 			int maxLineLength = 55;
 			
 			Scanner in = new Scanner(text);
