@@ -112,8 +112,8 @@ public class SearchController extends SceneController implements Initializable {
 	 * 
 	 * @param e An event given by some user action on the application.
 	 */
-	public void handleBackHomeClick(ActionEvent e) {
-		super.switchToView(e, View.HOME, View.SEARCH);
+	public void handleBackClick(ActionEvent e) {
+		super.switchToPrevView(e, View.SEARCH);
 	}
 	
 	

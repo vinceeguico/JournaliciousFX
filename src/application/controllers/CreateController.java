@@ -105,7 +105,7 @@ public class CreateController extends SceneController implements Initializable {
 	 * 
 	 * @param e An event given by some user action on the application
 	 */
-	public void handleBackHomeClick(ActionEvent e) {
+	public void handleBackClick(ActionEvent e) {
 		String title = titleField.getText();
 		String context = journalContextArea.getText();
 		

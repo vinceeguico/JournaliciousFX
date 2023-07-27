@@ -99,7 +99,7 @@
                               <Insets left="4.0" right="5.0" />
                            </VBox.margin>
                         </Button>
-                        <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackHomeClick" prefHeight="111.5" prefWidth="85.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" VBox.vgrow="ALWAYS">
+                        <Button maxHeight="1.7976931348623157E308" maxWidth="-Infinity" mnemonicParsing="false" onAction="#handleBackClick" prefHeight="111.5" prefWidth="85.0" style="-fx-background-color: red;" text="Cancel" textFill="WHITE" VBox.vgrow="ALWAYS">
                            <VBox.margin>
                               <Insets bottom="10.0" left="4.0" right="5.0" top="5.0" />
                            </VBox.margin>
@@ -117,7 +117,7 @@
    <top>
       <BorderPane prefHeight="65.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <right>
-            <Button mnemonicParsing="false" onAction="#handleBackHomeClick" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: white;" text="Home" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleBackClick" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: white;" text="Back" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets right="15.0" />
                </BorderPane.margin>

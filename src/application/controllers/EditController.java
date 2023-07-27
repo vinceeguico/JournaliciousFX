@@ -2,7 +2,6 @@ package application.controllers;
 
 import java.time.LocalDate;
 
-import application.controllers.SceneController.View;
 import application.dal.JournalDAO;
 import application.models.JournalModel;
 import javafx.event.ActionEvent;
