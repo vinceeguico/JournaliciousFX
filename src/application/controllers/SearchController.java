@@ -113,7 +113,7 @@ public class SearchController extends SceneController implements Initializable {
 	 * @param e An event given by some user action on the application.
 	 */
 	public void handleBackClick(ActionEvent e) {
-		super.switchToPrevView(e, View.SEARCH);
+		super.switchToView(e, View.HOME, View.SEARCH);
 	}
 	
 	
@@ -180,12 +180,14 @@ public class SearchController extends SceneController implements Initializable {
 		private final Text time;
 		private final Text context;
 		
-		// styling constants
+		// typography constants
 		private static final int TITLE_FONT_SIZE = 15;
 		private static final int DEFAULT_FONT_SIZE = 12;
-		private static final int PREVIEW_MAX_NUM_LINES = 4;
-		private static final int PREVIEW_MAX_LINE_LENGTH = 55;
 		private static final String ELIPSES = "...";
+		
+		// spacing constants
+		private static final int CELL_WIDTH = 200;
+		private static final int CELL_SPACING = 10;
 		
 		private JournalCell() {
 			radioBtn = new RadioButton();
@@ -194,33 +196,43 @@ public class SearchController extends SceneController implements Initializable {
 			time = new Text();
 			context = new Text();
 			
+			// typography
+			// title
+			Font titleFont = new Font(TITLE_FONT_SIZE);
+			title.setFont(titleFont);
+			title.setStyle("-fx-font-weight: bold;");
+			title.setWrappingWidth(CELL_WIDTH);
+			// journal info
+			Font defaultFont = new Font(DEFAULT_FONT_SIZE);
+			date.setFont(defaultFont);
+			time.setFont(defaultFont);
+			context.setFont(defaultFont);
+			
+			// radio button
 			// configure radio buttons to select list view's cell when clicked
 			radioBtn.setOnAction(event -> updateListViewSelection());
 			radioBtn.setOnMouseClicked(event -> updateListViewSelection());
 			
-			title.setStyle("-fx-font-weight: bold;");
-			title.setFont(new Font(TITLE_FONT_SIZE));
-			
-			Font defaultFont = new Font(DEFAULT_FONT_SIZE);
-			date.setFont(defaultFont);
-			time.setFont(defaultFont);
-			
-			
+			// journal info
 			journalInfoContainer = new VBox(title, date, time);
-			journalInfoContainer.setMinWidth(150);
-			journalInfoContainer.setMaxWidth(150);
-			journalInfoContainer.setSpacing(10);
+			// sizing and spacing
+			journalInfoContainer.setMinWidth(CELL_WIDTH);
+			journalInfoContainer.setMaxWidth(CELL_WIDTH);
+			journalInfoContainer.setSpacing(CELL_SPACING);
 			
+			// journal content
 			journalContentContainer = new VBox(context);
 			
+			// parent container
 			container = new HBox(radioBtn, journalInfoContainer, journalContentContainer);
+			// sizing and spacing
 			container.setPadding(new Insets(5, 0, 5, 0));
 			container.setSpacing(15);
 		}
 		
 		
 		/**
-		 * When radio button is clicked, update the list view selection as well
+		 * Update the list view's selection to match the selected radio button
 		 */
 		private void updateListViewSelection() {
 			ListView<JournalModel> listView = this.getListView();
@@ -231,6 +243,18 @@ public class SearchController extends SceneController implements Initializable {
 			else {
 				listView.getSelectionModel().clearSelection(this.getIndex());
 			}
+		}
+		
+		
+		/**
+		 * Method that executes every time the selection of the ListView changes
+		 * 
+		 * @param selected A boolean value representing whether the current cell is selected or not
+		 */
+		@Override
+		public void updateSelected(boolean selected) {
+			// toggle the radio button of the cell
+			radioBtnToggleGroup.selectToggle(this.radioBtn);
 		}
 		
 		
@@ -263,29 +287,30 @@ public class SearchController extends SceneController implements Initializable {
 		}
 		
 		
-		@Override
-		public void updateSelected(boolean selected) {
-			// toggle the radio button of the cell
-			radioBtnToggleGroup.selectToggle(this.radioBtn);
-		}
-		
-		
 		private String constructPreviewText(String text) {
 			String previewText = "";
+			int lineCount = 0;
+			
+			int maxLines = (int) (container.getHeight() / DEFAULT_FONT_SIZE);
+			int maxLineLength = 55;
 			
 			Scanner in = new Scanner(text);
-			int lineCount = 0;
-			while (in.hasNext() && lineCount < PREVIEW_MAX_NUM_LINES) {
+			while (in.hasNext() && lineCount < maxLines) {
 				String line = in.nextLine();
-				if (line.length() > PREVIEW_MAX_LINE_LENGTH) {
-					line = line.substring(0, PREVIEW_MAX_LINE_LENGTH - ELIPSES.length());
+				
+				// format the line to fit box
+				if (line.length() > maxLineLength) {
+					line = line.substring(0, maxLineLength - ELIPSES.length());
 					line += ELIPSES;
 				}
+				
+				// add the formatted line to string
 				previewText += line;
 				previewText += "\n";
 				
 				lineCount++;
 			}
+			in.close();
 			
 			return previewText;
 		}

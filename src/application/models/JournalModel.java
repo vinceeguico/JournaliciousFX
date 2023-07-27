@@ -26,7 +26,7 @@ public class JournalModel {
 	}
 	
 	public String getTime() {
-		return String.format("%d:%d", this.hour, this.minute);
+		return String.format("%02d:%02d", this.hour, this.minute);
 	}
 	
 	public int getHour() {
