@@ -52,7 +52,7 @@ public class CreateController extends SceneController implements Initializable {
 	
 	
 	// event listener that checks if spinners were clicked in/out of
-	void addFocusLostEventListener(Spinner spinner) {
+	void addFocusLostEventListener(Spinner<Integer> spinner) {
 		// addListener takes ChangeListener Functional Interface implementation as argument
 		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
 			// If there is not a new value, reset spinner to default
@@ -105,7 +105,7 @@ public class CreateController extends SceneController implements Initializable {
 	 * 
 	 * @param e An event given by some user action on the application
 	 */
-	public void handleBackHomeClick(ActionEvent e) {
+	public void handleBackClick(ActionEvent e) {
 		String title = titleField.getText();
 		String context = journalContextArea.getText();
 		

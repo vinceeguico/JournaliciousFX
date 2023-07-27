@@ -15,7 +15,7 @@
    <top>
       <BorderPane maxHeight="-Infinity" prefHeight="65.0" prefWidth="600.0" style="-fx-background-color: black;" BorderPane.alignment="CENTER">
          <right>
-            <Button mnemonicParsing="false" onAction="#handleBackHomeClick" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: white;" text="Home" BorderPane.alignment="CENTER">
+            <Button mnemonicParsing="false" onAction="#handleBackClick" prefHeight="40.0" prefWidth="80.0" style="-fx-background-color: white;" text="Back" BorderPane.alignment="CENTER">
                <BorderPane.margin>
                   <Insets right="15.0" />
                </BorderPane.margin>
