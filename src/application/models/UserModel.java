@@ -91,11 +91,8 @@ public class UserModel {
 	 * @return Returns true if the entered answer matches the answer to the security questions. Otherwise, returns false.
 	 */
 	public boolean isCorrectSecurityQuestionAnswer(String enteredAnswer) {
+		boolean answerIsCorrect = enteredAnswer.equals(securityQuestionAnswer);
 		
-		if (enteredAnswer.equals(securityQuestionAnswer)) {
-			return true;
-		}
-		
-		return false;
+		return answerIsCorrect;
 	}
 }

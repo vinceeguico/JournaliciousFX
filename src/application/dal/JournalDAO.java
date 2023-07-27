@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import application.dal.DBConnection.Database;
+import application.models.JournalModel;
 
 /**
  * A class that faciliates interacting with and manipulating journal data
@@ -48,11 +50,9 @@ public class JournalDAO {
 		}
 	}
 	
-	/**
-	 * Experimental method for gathering journal entries from the database.
-	 * Gets the context of every journal entry in the DB
-	 */
-	public void getJournals() {
+
+	public ArrayList<JournalModel> getJournals() {
+		ArrayList<JournalModel> journals = new ArrayList<>();
 		String query = "SELECT * FROM journal";
 		
 		try {
@@ -60,14 +60,123 @@ public class JournalDAO {
 			Connection connection = DBConnection.getDBConnection(Database.JOURNALS);
 			Statement statement = connection.createStatement();
 			
+			// iterate through every row in journals db
 			ResultSet results = statement.executeQuery(query);
 			while (results.next()) {
-				System.out.println(results.getString("context"));
+				// get column date from row in db
+				int id = results.getInt("id");
+				String title = results.getString("title");
+				String date = results.getString("date");
+				int hour = results.getInt("hour");
+				int minute = results.getInt("minute");
+				String context = results.getString("context");
+				
+				// create a new journal model and add it to output list
+				JournalModel newJournal = new JournalModel(id, title, date, hour, minute, context);
+				journals.add(newJournal);
 			}
 			
 			
 		} catch (Exception ex) {
-			System.out.println("Failed to retrieve entries from journal_db.sqlite");
+			System.out.println("Failed to retrieve journal entries!");
+			ex.printStackTrace();
+		}
+		
+		return journals;
+	}
+	
+	
+	public ArrayList<JournalModel> getJournals(String keyword) {
+		ArrayList<JournalModel> journals = new ArrayList<>();
+		String updateQuery = "SELECT * FROM journal WHERE title LIKE ? OR context LIKE ?";
+		
+		try {
+			
+			Connection connection = DBConnection.getDBConnection(Database.JOURNALS);
+			PreparedStatement statement = connection.prepareStatement(updateQuery);
+			
+			// set up query to check if entry has any substring containing keyword
+			String keywordSearch = "%" + keyword + "%";
+			statement.setString(1, keywordSearch);
+			statement.setString(2, keywordSearch);
+			
+			// iterate through every row in journals db
+			ResultSet results = statement.executeQuery();
+			while (results.next()) {
+				// get column date from row in db
+				int id = results.getInt("id");
+				String title = results.getString("title");
+				String date = results.getString("date");
+				int hour = results.getInt("hour");
+				int minute = results.getInt("minute");
+				String context = results.getString("context");
+				
+				// create a new journal model and add it to output list
+				JournalModel newJournal = new JournalModel(id, title, date, hour, minute, context);
+				journals.add(newJournal);
+			}
+			
+			
+		} catch (Exception ex) {
+			System.out.println("Failed to retrieve journal entries!");
+			ex.printStackTrace();
+		}
+		
+		return journals;
+	}
+	
+	
+	public void deleteJournal(JournalModel journal) {
+		String updateQuery = "DELETE FROM journal WHERE id = ?";
+		int id = journal.getID();
+		
+		try {
+			
+			Connection connection = DBConnection.getDBConnection(Database.JOURNALS);
+			PreparedStatement statement = connection.prepareStatement(updateQuery);
+			
+			statement.setInt(1,  id);
+			
+			int rowsDeleted = statement.executeUpdate();
+			if (rowsDeleted > 0) {
+				System.out.println("Deleted entry from DB!");
+			}
+			else {
+				System.out.println("Could not delete journal from DB!");
+			}
+			
+		} catch (Exception ex) {
+			System.out.println("Failed to delete journal entry from DB!");
+			ex.printStackTrace();
+		}
+	}
+	
+	
+	public void updateJournal(int id, String title, String date, int hour, int minute, String context) {
+		String updateQuery = "UPDATE journal SET title = ?, date = ?, hour = ?, minute = ?, context = ? WHERE id = ?";
+		
+		try {
+			
+			Connection connection = DBConnection.getDBConnection(Database.JOURNALS);
+			PreparedStatement statement = connection.prepareStatement(updateQuery);
+		
+			statement.setString(1, title);
+			statement.setString(2, date);
+			statement.setInt(3, hour);
+			statement.setInt(4, minute);
+			statement.setString(5, context);
+			statement.setInt(6, id);
+			
+			int rowsAdded = statement.executeUpdate();
+			if (rowsAdded > 0) {
+				System.out.println("Updated journal in DB!");	
+			}
+			else {
+				System.out.println("Could not update journal!");
+			}
+			
+		} catch (Exception ex) {
+			System.out.println("Failed to add journal to database!");
 			ex.printStackTrace();
 		}
 	}

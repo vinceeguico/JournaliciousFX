@@ -28,11 +28,10 @@ public class CreateController extends SceneController implements Initializable {
 	@FXML private Spinner<Integer> minuteSpinner;
 	@FXML private TextArea journalContextArea;
 	
-	
 	/**
 	 * A custom string converter object that formats times
 	 */
-	private static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
+	static final StringConverter<Integer> TIME_FORMAT_CONVERTER = new StringConverter<Integer>() {
 		@Override
 		public String toString(Integer val) {
 			// pad the time element's value with 0s if it is a single digit
@@ -53,7 +52,7 @@ public class CreateController extends SceneController implements Initializable {
 	
 	
 	// event listener that checks if spinners were clicked in/out of
-	private void addFocusLostEventListener(Spinner spinner) {
+	void addFocusLostEventListener(Spinner spinner) {
 		// addListener takes ChangeListener Functional Interface implementation as argument
 		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
 			// If there is not a new value, reset spinner to default
@@ -62,6 +61,7 @@ public class CreateController extends SceneController implements Initializable {
 			}
 		});
 	}
+	
 	
 	/**
 	 * Initializes the page's fields and autofills each field
@@ -114,13 +114,13 @@ public class CreateController extends SceneController implements Initializable {
 			this.showAlert(e);
 		}
 		else {
-			super.switchToView(e, View.HOME, View.CREATE);
+			super.switchToPrevView(e, View.CREATE);
 		}
 	}
 	
 	
 	// displays alert message warning user they will lose their progress
-	private void showAlert(ActionEvent e) {
+	void showAlert(ActionEvent e) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirm Leaving Page");
 		alert.setHeaderText("Warning!");
@@ -129,7 +129,7 @@ public class CreateController extends SceneController implements Initializable {
 		// if user hits OK, redirect to home page
 		alert.setOnCloseRequest(event -> {
 			if (alert.getResult() == ButtonType.OK) {
-				super.switchToView(e, View.HOME, View.CREATE);
+				super.switchToPrevView(e, View.CREATE);
 			}
 		});
 		
@@ -161,6 +161,6 @@ public class CreateController extends SceneController implements Initializable {
 		journalDao.createJournal(title, date, hour, minute, context);
 		
 		// display success message (TODO!) and switch to home page
-		super.switchToView(e, View.HOME, View.CREATE);
+		super.switchToPrevView(e, View.CREATE);
 	}	
 }
