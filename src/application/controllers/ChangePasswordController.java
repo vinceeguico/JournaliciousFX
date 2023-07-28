@@ -68,7 +68,7 @@ public class ChangePasswordController extends SceneController implements Initial
 	 * Handles logic for the selection of a security question
 	 * from the choice box
 	 *
-	 * @param e an event given by some user action on the application 
+	 * @param e An event given by some user action on the application 
 	 **/
 	public void handleSecurityQuestionSelection(ActionEvent e) {
 		this.securityQuestion = securityQuestionChoiceBox.getValue();

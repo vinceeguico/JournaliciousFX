@@ -16,7 +16,6 @@ import javafx.stage.Stage;
  * provides access to a user model that persists through application's lifetime
  */
 class SceneController {
-	
 	private static final String viewPackagePath = "resources/views/";
 	
 	// static class variable to avoid being reset upon re-instantiation
@@ -64,6 +63,12 @@ class SceneController {
 	}
 	
 	
+	/**
+	 * Handles the logic for switching from the Search Page to the Edit Page
+	 * 
+	 * @param e an event given by some user action on the application 
+	 * @param journal the journal entry to populate the edit page with
+	 */
 	protected void switchToEditView(ActionEvent e, JournalModel journal) {
 		try {
 			
@@ -95,7 +100,6 @@ class SceneController {
 			ex.printStackTrace();
 		}
 	}
-	
 	
 	
 	/**

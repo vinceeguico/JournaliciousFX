@@ -51,7 +51,11 @@ public class CreateController extends SceneController implements Initializable {
 	};
 	
 	
-	// event listener that checks if spinners were clicked in/out of
+	/**
+	 * Adds an event listener to a spinner that checks if spinners were clicked in/out of
+	 * 
+	 * @param spinner the spinner to add the event listener to
+	 */
 	void addFocusLostEventListener(Spinner<Integer> spinner) {
 		// addListener takes ChangeListener Functional Interface implementation as argument
 		spinner.getEditor().focusedProperty().addListener((observableValue, previousValue, newValue) -> {
@@ -101,7 +105,7 @@ public class CreateController extends SceneController implements Initializable {
 	
 	
 	/**
-	 * Handles clicks on "Home" button.
+	 * Handles clicks on "Back" button.
 	 * 
 	 * @param e An event given by some user action on the application
 	 */
@@ -119,7 +123,11 @@ public class CreateController extends SceneController implements Initializable {
 	}
 	
 	
-	// displays alert message warning user they will lose their progress
+	/**
+	 * Displays alert message warning the user that they will lose their progress
+	 * 
+	 * @param e An event given by some user action on the application
+	 */
 	void showAlert(ActionEvent e) {
 		Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
 		alert.setTitle("Confirm Leaving Page");
@@ -141,7 +149,7 @@ public class CreateController extends SceneController implements Initializable {
 	/**
 	 * Handles logic for clicking the Save button on the Create page
 	 * 
-	 * @param e an event given by some user action on the application
+	 * @param e An event given by some user action on the application
 	 */
 	public void handleSave(ActionEvent e) {
 		// get title and context

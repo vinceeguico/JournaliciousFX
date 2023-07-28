@@ -63,7 +63,6 @@ public class LoginController extends SceneController implements Initializable {
 	}
 
 	
-	
 	/**
 	 * Handles logic for clicking the forgot password button
 	 * 

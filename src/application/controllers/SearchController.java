@@ -38,12 +38,22 @@ public class SearchController extends SceneController implements Initializable {
 	private ToggleGroup radioBtnToggleGroup;
 	
 	
+	/**
+	 * Constructs a SearchController object
+	 */
 	public SearchController() {
 		this.journalsObsList = FXCollections.observableArrayList();
 		this.radioBtnToggleGroup = new ToggleGroup();
 	}
 	
 	
+	/**
+	 * Initializes the page's fields and autofills each field
+	 * with the default value
+	 * 
+	 * @param location the location of a file or directory
+	 * @param resources the resources required to locate the root element
+	 */
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {		
 		// add all journals to journalListView
@@ -79,6 +89,11 @@ public class SearchController extends SceneController implements Initializable {
 	}
 	
 	
+	/**
+	 * Handles logic for clicking the Delete button
+	 * 
+	 * @param e An event given by some user action on the application
+	 */
 	public void handleDelete(ActionEvent e) {
 		JournalModel journal = getToggledJournal();
 		
@@ -98,6 +113,11 @@ public class SearchController extends SceneController implements Initializable {
 	}
 	
 	
+	/**
+	 * Handles logic for clicking the Edit button
+	 * 
+	 * @param e An event given by some user action on the application
+	 */
 	public void handleEdit(ActionEvent e) {
 		Toggle selectedRadioBtn = this.radioBtnToggleGroup.getSelectedToggle();
 		
@@ -132,6 +152,11 @@ public class SearchController extends SceneController implements Initializable {
 	}
 	
 	
+	/**
+	 * Handles logic for searching for a journal entry
+	 * 
+	 * @param e An event given by some user action on the application
+	 */
 	public void handleSearch(ActionEvent e) {
 		// get search keyword
 		String keyword = searchTextField.getText();
@@ -155,6 +180,7 @@ public class SearchController extends SceneController implements Initializable {
 		this.journalsObsList.addAll(userJournals);
 	}
 	
+	
 	private void resetJournalsObsList() {
 		JournalDAO journalDAO = new JournalDAO();
 		ArrayList<JournalModel> userJournals = journalDAO.getJournals();
@@ -166,7 +192,7 @@ public class SearchController extends SceneController implements Initializable {
 	
 	
 	/**
-	 * Inner class that defines the content and styles of a journal entry cell.
+	 * Inner class that defines the content and styles of a journal entry's cell in the ListView
 	 */
 	private class JournalCell extends ListCell<JournalModel> {
 		// layout panes
@@ -260,6 +286,13 @@ public class SearchController extends SceneController implements Initializable {
 		}
 		
 		
+		/**
+		 * Method that runs when a new JournalCell is instantiated in the ListView,
+		 * responsible for configuring and populating its fields
+		 * 
+		 * @param journal the journal entry whose info will populate this JournalCell
+		 * @param empty a boolean value indicating whether the cell is empty
+		 */
 		@Override
 		protected void updateItem(JournalModel journal, boolean empty) {
 			super.updateItem(journal, empty);
