@@ -22,6 +22,11 @@ public class EditController extends CreateController {
 	private JournalModel journal;
 	
 
+	/**
+	 * Startup method that configures and sets up all forms on the Create page
+	 * 
+	 * @param journal the JournalModel of the entry to be edited
+	 */
 	public void init(JournalModel journal) {
 		this.journal = journal;
 		
@@ -47,6 +52,13 @@ public class EditController extends CreateController {
 	}
 	
 	
+	/**
+	 * Populates fields of the Edit page with journal info
+	 * 
+	 * @param journal the JournalModel containing the journal entry's info
+	 * @param hourValueFactory the SpinnerValueFactory for the hour spinner
+	 * @param minuteValueFactory the SpinnerValueFactory for the minute spinner
+	 */
 	private void fillOutFields(JournalModel journal, SpinnerValueFactory<Integer> hourValueFactory, SpinnerValueFactory<Integer> minuteValueFactory) {
 		// fill out the title
 		titleField.setText(journal.getTitle());
@@ -63,6 +75,12 @@ public class EditController extends CreateController {
 		journalContextArea.setText(journal.getContext());
 	}
 	
+	
+	/**
+	 * Handles logic for clicking the "Save" button
+	 * 
+	 * e An event given by some user action on the application 
+	 */
 	@Override
 	public void handleSave(ActionEvent e) {
 		int id = this.journal.getID();
