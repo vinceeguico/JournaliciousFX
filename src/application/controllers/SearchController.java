@@ -14,6 +14,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -205,13 +206,11 @@ public class SearchController extends SceneController implements Initializable {
 		private final Text title;
 		private final Text date;
 		private final Text time;
-		private final Text context;
+		private final Label context;
 		
 		// typography constants
 		private static final int TITLE_FONT_SIZE = 15;
 		private static final int DEFAULT_FONT_SIZE = 12;
-		private static final int MIN_NUM_LINES = 4;
-		private static final String ELIPSES = "...";
 		
 		// spacing constants
 		private static final int CELL_WIDTH = 200;
@@ -222,7 +221,7 @@ public class SearchController extends SceneController implements Initializable {
 			title = new Text();
 			date = new Text();
 			time = new Text();
-			context = new Text();
+			context = new Label();
 			
 			// typography
 			// title
@@ -250,6 +249,8 @@ public class SearchController extends SceneController implements Initializable {
 			
 			// journal content
 			journalContentContainer = new VBox(context);
+			context.setWrapText(true); 
+			context.setMaxWidth(300);
 			
 			// parent container
 			container = new HBox(radioBtn, journalInfoContainer, journalContentContainer);
@@ -305,7 +306,7 @@ public class SearchController extends SceneController implements Initializable {
 				// associate the journal with the radio button
 				// so it can be retrieved from its toggle group
 				radioBtn.setUserData(journal);
-				
+				// set the selection status of this radio button based on ListView
 				radioBtn.setSelected(getListView().getSelectionModel().isSelected(this.getIndex()));
 				
 				// update rest of fields to match journal model
@@ -316,43 +317,15 @@ public class SearchController extends SceneController implements Initializable {
 				// Defer updating preview text until the container has been fully instantiated
 				// so that dimensions of the container can be safely accessed
 				Platform.runLater(() -> {
-					String previewText = constructPreviewText(journal.getContext());
+					String previewText = journal.getContext();
 					context.setText(previewText);
+					// set max height to height of parent container
+					context.setMaxHeight(container.getHeight());
 				});
 				
 				// make the cell visible
 				setGraphic(container);
 			}
-		}
-		
-		
-		private String constructPreviewText(String text) {
-			String previewText = "";
-			int lineCount = 0;
-
-			int calculatedMaxLines = (int) (container.getHeight() - 50) / DEFAULT_FONT_SIZE;
-			int maxLines = Math.max(MIN_NUM_LINES, calculatedMaxLines);
-			int maxLineLength = 55;
-			
-			Scanner in = new Scanner(text);
-			while (in.hasNext() && lineCount < maxLines) {
-				String line = in.nextLine();
-				
-				// format the line to fit box
-				if (line.length() > maxLineLength) {
-					line = line.substring(0, maxLineLength - ELIPSES.length());
-					line += ELIPSES;
-				}
-				
-				// add the formatted line to string
-				previewText += line;
-				previewText += "\n";
-				
-				lineCount++;
-			}
-			in.close();
-			
-			return previewText;
 		}
 	}
 
