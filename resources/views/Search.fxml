@@ -50,7 +50,7 @@
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <Label text="Results For:">
+            <Label text="Results:">
                <VBox.margin>
                   <Insets left="15.0" top="10.0" />
                </VBox.margin>

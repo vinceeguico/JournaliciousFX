@@ -89,6 +89,9 @@ public class CreateController extends SceneController implements Initializable {
 		SpinnerValueFactory<Integer> minuteValueFactory = new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 59);
 		minuteValueFactory.setConverter(TIME_FORMAT_CONVERTER);
 		
+		// set wrapping on context TextArea
+		journalContextArea.setWrapText(true);
+		
 		
 		// autofill the date
 		datePicker.setValue(LocalDate.now());
